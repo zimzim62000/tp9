@@ -25,7 +25,7 @@ class UserCardController extends Controller
     public function addAction(Request $request, Card $card)
     {
         $usercard = $this->get(\App\Entity\UserCard::class);
-        $form = $this->createForm(UserCardType::class, $usercard);
+        $form = $this->createForm(UserCardType::class, $usercard, ['card' => $card]);
         $form->handleRequest($request);
 
         if($form->isValid() && $form->isSubmitted()) {

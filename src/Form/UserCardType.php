@@ -28,6 +28,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 class UserCardType extends AbstractType
 {
     protected $token;
+    protected $card;
 
     /**
      * UserCardType constructor.
@@ -41,11 +42,12 @@ class UserCardType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array('data_class' => UserCard::class));
+        $resolver->setDefaults(array('data_class' => UserCard::class, 'card' => null));
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $this->card = $options['card'];
         $builder
             ->add('actionPoint', IntegerType::class)
             ->add('attack', IntegerType::class)
@@ -62,6 +64,7 @@ class UserCardType extends AbstractType
         if($usercard->getId() == null)
         {
             $usercard->setUser($this->token->getToken()->getUser());
+            $usercard->setCard($this->card);
         }
 
 
