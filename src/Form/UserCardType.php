@@ -44,7 +44,7 @@ class UserCardType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->card = $options(['card']);
+        $this->card = $options['card'];
         $builder
             ->add("actionPoint")
             ->add("attack")
@@ -63,19 +63,5 @@ class UserCardType extends AbstractType
         $userCard->setUser($this->token->getToken()->getUser());
         $form->add('submit', SubmitType::class);
     }
-
-    public function newUserCard(Request $request, Card $card)
-    {
-        $userCard = new UserCard();
-        $userCard->setCard($card);
-        $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(UserCardType::class, $userCard, ['card' => $card->getId()]);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($userCard);
-            $em->flush();
-            return $this->redirectToRoute("userCard_index");
-        }
-        return $this->render('UserCard/new.html.twig', array('form' => $form->createView()));
-    }
 }
+
