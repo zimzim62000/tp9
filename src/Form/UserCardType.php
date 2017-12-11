@@ -50,7 +50,7 @@ class UserCardType extends AbstractType
             ->add('defence', NumberType::class)
             ->addEventListener( FormEvents::PRE_SET_DATA, array($this, 'onPreSetData'))
             ->addEventListener(FormEvents::PRE_SUBMIT, array($this, 'onPreSubmitData'))
-            ->add('save', SubmitType::class, array('label' =>"créer"))
+
             ->getForm();
     }
     public function onPreSetData(FormEvent $event)
@@ -59,13 +59,14 @@ class UserCardType extends AbstractType
         $form = $event->getForm();
 
         if ($usercard->getId() !== null){
+            $form->add('save', SubmitType::class, array('label' =>"modifier"));
 
 
         }
         else{
-
             $usercard->setUser($this->token->getToken()->getUser());
             $usercard->setCard($this->card);
+            $form->add('save', SubmitType::class, array('label' =>"créer"));
 
         }
 
@@ -74,9 +75,7 @@ class UserCardType extends AbstractType
 
     }
     public function onPreSubmitData(FormEvent $event){
-       /* $form = $event->getForm();
-        $usercadValue = $form->getData();
-        $dataForm = $event->getData();*/
+
 
 
     }

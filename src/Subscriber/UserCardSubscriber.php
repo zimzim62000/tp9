@@ -38,13 +38,12 @@ class UserCardSubscriber implements EventSubscriberInterface
 
     public function userCardEdit(UserCardEvent $userCardEvent){
 
-        /*
-        $player= $playerEvent->getPlayer();
-        $player->setUpdatedAt(new \DateTime());
-        $this->em->persist($player);
+        $usercard=  $userCardEvent->getUserCard();
+
+        $this->em->persist($usercard);
 
         $this->em->flush();
-        echo 'modif player ok';*/
+        echo 'UserCard bien modifié';
     }
 
 

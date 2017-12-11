@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\UserCard;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -19,6 +20,13 @@ class UserController extends Controller
      */
     public function indexdAction()
     {
-        return $this->render('User/index.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $userCard = $em->getRepository(UserCard::class)->findBy(array("user"=>$this->getUser()));
+
+        return $this->render('User/index.html.twig',['usercards' => $userCard]);
+
+
     }
 }
