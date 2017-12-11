@@ -27,3 +27,13 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Entity\UserCard:
+        public: true
+
+    App\Event\UserCardEvent:
+        public: true
+
+
+    App\Subscriber\UserCardSubscriber:
+        arguments: [ '@doctrine.orm.entity_manager']
