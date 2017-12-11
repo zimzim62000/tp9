@@ -32,7 +32,8 @@ class UserCardSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(AppEvent::USERCARD_ADD => 'usercardAdd',
-            AppEvent::USERCARD_EDIT => 'usercardEdit');
+            AppEvent::USERCARD_EDIT => 'usercardEdit',
+            AppEvent::USERCARD_REMOVE => 'usercardRemove');
     }
 
     public function usercardAdd(UserCardEvent $usercardEvent){
@@ -43,7 +44,7 @@ class UserCardSubscriber implements EventSubscriberInterface
 
         echo 'ok ajout usercard';
     }
-/*
+
     public function usercardEdit(UserCardEvent $usercardEvent){
 
         $usercard = $usercardEvent->getUsercard();
@@ -52,7 +53,14 @@ class UserCardSubscriber implements EventSubscriberInterface
         $this->em->persist($usercard);
         $this->em->flush();
 
-        echo 'ok edit player';
     }
-*/
+
+    public function usercardRemove(UserCardEvent $usercardEvent)
+    {
+        $usercard = $usercardEvent->getUsercard();
+
+        $this->em->remove($usercard);
+        $this->em->flush();
+    }
+
 }
