@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Index{% endblock %}
+
+{% block body %}<h1>Welcome</h1>
+    {% for usercard in usercard %}
+    {% if(app.user.id==usercard.user.id) %}
+        <li>
+
+            {{usercard.card.id }} -idCarte
+            {{usercard.user.id }} -idUser
+
+        </li>
+    {% endif %}
+    {% endfor %}
+{% endblock %}

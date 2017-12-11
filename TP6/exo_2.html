@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+    <style>
+        body{
+            background: black;
+        }
+        h1{
+            color: greenyellow;
+            font-size: 2.5rem;
+        }
+        h2{
+            color: white;
+            font-size: 2rem;
+        }
+		h3{
+            color: cyan;
+            font-size: 1.5rem;
+        }
+        hr{
+            color: yellow;
+        }
+        a{
+            color: cyan;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<h2>Dans le controller</h2>
+<h3>
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;<br />
+        if (false === $authChecker->isGranted(AppAccess::CardShow, $card)) {<br />
+            return $this->redirectToRoute('card_index');<br />
+        }<br />/** @ou*/
+        $this->denyAccessUnlessGranted(AppAccess::CardShow, $card);<br />
+
+</h3>
+<h2>Dans unevue</h2>
+<h3>
+ {% if is_granted('app_card_show', card) == true %}<br />
+                    {{ card.name }} - <a href="{{ path('card_show', {'id': card.id}) }}">Show</a><br />
+                {% endif %}<br />
+</h3>
+<h2>Pour infos :</h2>
+<h3>security:<br />
+    access_decision_manager:<br />
+        strategy: unanimous</h3>
+		<h2>3 types de voter existe :<br />
+		affirmatif : si 1 repond oui c tout bon <br />
+		consensus : La majorité l'emporte<br />
+		unanimous : si 1 repond non ben c foutu ! <br />
+		</h2>
+<a href="exo_1.html">Exo1</a>
+<a href="exo_3.html">Exo3</a>
+</body>
+</html>

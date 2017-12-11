@@ -15,6 +15,7 @@
                 {% endif %}
                 #}
                 {{ card.name }} - <a href="{{ path('card_show', {'id': card.id}) }}">Show</a>
+                <a href="{{ path('app_user_card_add', {'id': card.id}) }}">add</a>
 
             </li>
 
