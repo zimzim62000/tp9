@@ -39,6 +39,7 @@ class UserCardController extends Controller
 
             $dispatcher->dispatch(AppEvent::USERCARD_ADD, $usercardEvent);
 
+            return $this->redirectToRoute('user_index');
         }
         return $this->render('UserCard/new.html.twig', array('form' => $form->createView()));
 
