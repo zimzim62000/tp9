@@ -1,4 +1,4 @@
-# LP DIOC - TP4
+# LP DIOC - TP9
 
 ## Install
 
@@ -26,5 +26,5 @@ Please update the `.env` file as your needs. Expecially the `DATABASE_URL` env v
 
 | login | password | role       |
 |-------|----------|------------|
-| `user@exemple.org`  | `user`     | `ROLE_USER`  |
-| `admin@exemple.org` | `admin`    | `ROLE_ADMIN` |
+| `user@user.fr`   | `user`     | `ROLE_USER`  |
+| `admin@admin.fr` | `admin`    | `ROLE_ADMIN` |

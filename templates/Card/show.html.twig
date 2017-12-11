@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<h2>show Card</h2>
+
+<ul>
+    <li>{{ card.name }}
+</ul>
+
+    <a href="{{ path('card_index') }}">back to list</a></li>
+{% endblock %}

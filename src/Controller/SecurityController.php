@@ -31,27 +31,4 @@ class SecurityController extends Controller
             ]
         );
     }
-
-    /**
-     * @Route(
-     *     path="/register",
-     *     name="register"
-     * )
-     */
-    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $form = $this->createForm(UserType::class, $user = new User());
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            $password = $passwordEncoder->encodePassword($user, $form->get('plainPassword')->getData());
-            $user->setPassword($password);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirectToRoute('login');
-        }
-
-        return $this->render('Security/register.html.twig', ['form' => $form->createView()]);
-    }
 }
