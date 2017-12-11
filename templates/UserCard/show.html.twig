@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %} liste des UserCards
+{% endblock %}
+
+{% block body %}
+
+    <ul>
+        {% for usercard in usercard %}
+            <li>actionPoint : {{ usecard.actionPoint }} ; Attack : {{ usercard.attack }} ; Defence : {{ usercard.defence }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

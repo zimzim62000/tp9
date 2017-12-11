@@ -32,6 +32,31 @@ class LoadCard extends Fixture
         $card->setName('Serpent de la fosse');
         $manager->persist($card);
 
+        $card = new Card();
+        $card->setName('Archimonde');
+        $manager->persist($card);
+
+        $card = new Card();
+        $card->setName("Gul'dan");
+        $manager->persist($card);
+
+        $card = new Card();
+        $card->setName("Lich-King");
+        $manager->persist($card);
+
+        $card = new Card();
+        $card->setName('Antorus');
+        $manager->persist($card);
+
+        $card = new Card();
+        $card->setName("Vol'jin");
+        $manager->persist($card);
+
+        $card = new Card();
+        $card->setName("Thrall");
+        $manager->persist($card);
+
+
         $manager->flush();
     }
 }

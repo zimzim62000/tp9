@@ -13,17 +13,32 @@ class LoadUser extends Fixture
     public function load(ObjectManager $manager)
     {
         $user = new User();
-
-        $user->setFirstname('User');
-        $user->setLastname('User');
-        $user->setEmail('user@user.fr');
-        $user->setBirthday(new \DateTime('2000/01/01'));
-
+        $user->setFirstname('User1');
+        $user->setLastname('User1');
+        $user->setEmail('user1@user.fr');
+        $user->setBirthday(new \DateTime('1998/04/02'));
         $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD);
         $user->setPassword($password);
+        $manager->persist($user);
+        $manager->flush();
 
-        $this->addReference('user', $user);
+        $user = new User();
+        $user->setFirstname('User2');
+        $user->setLastname('User2');
+        $user->setEmail('user2@user.fr');
+        $user->setBirthday(new \DateTime('1999/03/08'));
+        $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD);
+        $user->setPassword($password);
+        $manager->persist($user);
+        $manager->flush();
 
+        $user = new User();
+        $user->setFirstname('User3');
+        $user->setLastname('User3');
+        $user->setEmail('user3@user.fr');
+        $user->setBirthday(new \DateTime('1996/01/10'));
+        $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD);
+        $user->setPassword($password);
         $manager->persist($user);
         $manager->flush();
     }
