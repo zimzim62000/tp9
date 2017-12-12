@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\AppAccess;
 use App\AppEvent;
 use App\Entity\Card;
 use App\Entity\User;
@@ -11,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\UserCardType;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 
 /**
@@ -52,8 +54,11 @@ class UserCardController extends Controller
      *     name="usercard_edit"
      * )
      */
-    public function editAction(Request $request, UserCard $usercard)
+    public function editAction(Request $request, UserCard $usercard,AuthorizationCheckerInterface $authorizationChecker)
     {
+        if(false === $authorizationChecker->isGranted(AppAccess::UserCardEdit, $usercard)){
+            			return $this->redirectToRoute("user_index");
+ 	}
         $form = $this->createForm(UserCardType::class, $usercard);
         $form->handleRequest($request);
 
@@ -79,8 +84,11 @@ class UserCardController extends Controller
      *     name="usercard_remove"
      * )
      */
-    public function removeAction(UserCard $usercard)
+    public function removeAction(UserCard $usercard,AuthorizationCheckerInterface $authorizationChecker)
     {
+        if(false === $authorizationChecker->isGranted(AppAccess::UserCardDelete, $usercard)){
+            			return $this->redirectToRoute("user_index");
+ 		}
 
             $usercardEvent = $this->get(\App\Event\UserCardEvent::class);
 

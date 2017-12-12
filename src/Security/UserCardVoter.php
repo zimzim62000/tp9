@@ -22,12 +22,12 @@ class UserCardVoter extends Voter
     }
 
     const VIEW = AppAccess::UserCardShow;
-    const ADD = AppAccess::UserCardAdd;
+    const DELETE = AppAccess::UserCardDelete;
     const EDIT = AppAccess::UserCardEdit;
 
     protected function supports($attribute, $subject)
     {
-        if(!in_array($attribute, array(self::VIEW,self::ADD,self::EDIT))){
+        if(!in_array($attribute, array(self::VIEW,self::DELETE,self::EDIT))){
             return false;
         }
 
@@ -51,10 +51,14 @@ class UserCardVoter extends Voter
         }
 
         switch($attribute){
-            case self::VIEW:
-                return $subject->getUser()->getId()=== $user->getId();
-            default:
-                throw new \LogicException('This code should not be reached!');
-        }
+            case self::EDIT:
+            				return $subject->getUser()->getId() === $user->getId();
+ 			case self::DELETE:
+            				return $subject->getUser()->getId() === $user->getId();
+ 			case self::VIEW:
+            				return $subject->getUser()->getId() === $user->getId();
+ 			default:
+            				throw new \LogicException('This code should not be reached!');
+ 		}
     }
 }
