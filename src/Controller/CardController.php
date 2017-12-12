@@ -31,7 +31,7 @@ class CardController extends Controller
 
     /**
      * @Route(
-     *     path="{id}/show",
+     *     path="/{id}/show",
      *     name="card_show"
      * )
      */
@@ -45,7 +45,7 @@ class CardController extends Controller
         $this->denyAccessUnlessGranted(AppAccess::CardShow, $card);
 
         */
-
+        
         return $this->render('Card/show.html.twig', ['card' => $card]);
     }
 }

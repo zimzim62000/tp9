@@ -4,5 +4,16 @@
 {% block body %}
 
     <h2>index user</h2>
+    <ul>
+		{% for a_userCard in userCards %}
 
+			{% if is_granted('app_usercard_show', a_userCard) == true %}
+				<li>
+					<a href="{{ path('show_usercard', {'id': a_userCard.card.id}) }}">{{ a_userCard.card.name }}</a> -
+					<a href="{{ path('edit_usercard', {'id': a_userCard.id}) }}">Editer</a>
+					<a href="{{ path('delete_usercard', {'id': a_userCard.id}) }}">Supprimer</a>
+				</li>
+			{% endif %}
+		{% endfor %}
+    </ul>
 {% endblock %}
