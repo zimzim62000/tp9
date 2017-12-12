@@ -149,11 +149,9 @@ class User implements UserInterface, \Serializable
     public function getRoles()
     {
         $roles = ['ROLE_USER'];
-
         if ($this->isAdmin()) {
             $roles[] = 'ROLE_ADMIN';
         }
-
         return $roles;
     }
 
@@ -206,5 +204,10 @@ class User implements UserInterface, \Serializable
             $this->lastname,
             $this->isAdmin,
             $this->password) = unserialize($serialized);
+    }
+
+    function __toString()
+    {
+        return $this->getFirstname()." ".$this->getLastname();
     }
 }
