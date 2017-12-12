@@ -1,15 +1,22 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: thomasdebacker
+ * Date: 12/12/2017
+ * Time: 17:19
+ */
 
 namespace App\Security;
 
 use App\AppAccess;
+use App\AppEvent;
 use App\Entity\User;
-use App\Entity\Card;
+use App\Entity\UserCard;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
-class CardVoter extends Voter {
+class UserCardVoter extends Voter {
 
     private $decisionManager;
 
@@ -18,16 +25,17 @@ class CardVoter extends Voter {
         $this->decisionManager = $decisionManager;
     }
 
-    const VIEW = AppAccess::CardShow;
+    const VIEW = AppAccess::UserCardShow;
+    const DELETE = AppAccess::UserCardDelete;
+    const EDIT = AppAccess::UserCardEdit;
 
     protected function supports($attribute, $subject)
     {
-
-        if(!in_array($attribute, array(self::VIEW))){
+        if(!in_array($attribute, array(self::VIEW,self::DELETE,self::EDIT))){
             return false;
         }
 
-        if(!$subject instanceof Card){
+        if(!$subject instanceof UserCard){
             return false;
         }
 
@@ -42,12 +50,17 @@ class CardVoter extends Voter {
 
         $user = $token->getUser();
 
-        if(!$user instanceof User) {
+        if(!$user instanceof User){
             return false;
         }
+
         switch($attribute) {
+            case self::EDIT:
+                return $subject->getUser()->getId() === $user->getId();
+            case self::DELETE:
+                return $subject->getUser()->getId() === $user->getId();
             case self::VIEW:
-                return $subject->getVisible();
+                return $subject->getUser()->getId() === $user->getId();
             default:
                 throw new \LogicException('This code should not be reached!');
         }
