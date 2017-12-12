@@ -25,6 +25,37 @@ class LoadUser extends Fixture
         $this->addReference('user', $user);
 
         $manager->persist($user);
+
+
+        $user = new User();
+
+        $user->setFirstname('User1');
+        $user->setLastname('User1');
+        $user->setEmail('user1@user.fr');
+        $user->setBirthday(new \DateTime('2001/01/01'));
+
+        $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD);
+        $user->setPassword($password);
+
+        $this->addReference('user1', $user);
+
+        $manager->persist($user);
+
+        $user = new User();
+
+        $user->setFirstname('User2');
+        $user->setLastname('User2');
+        $user->setEmail('user2@user.fr');
+        $user->setBirthday(new \DateTime('2001/01/01'));
+
+        $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD);
+        $user->setPassword($password);
+
+        $this->addReference('user2', $user);
+
+        $manager->persist($user);
+
+
         $manager->flush();
     }
 }

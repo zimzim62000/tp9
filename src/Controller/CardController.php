@@ -48,4 +48,6 @@ class CardController extends Controller
 
         return $this->render('Card/show.html.twig', ['card' => $card]);
     }
+
+
 }
