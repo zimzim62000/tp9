@@ -38,9 +38,9 @@ class UserCardType extends AbstractType
 
         $this->card = $options["card"];
 
-        $builder->add("Attack", IntegerType::class)
-            ->add("Defense", IntegerType::class)
-            ->add("ActionPoint", IntegerType::class)
+        $builder->add("attack", IntegerType::class)
+            ->add("defense", IntegerType::class)
+            ->add("actionPoint", IntegerType::class)
             ->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'onPreSetData'])->getForm();
     }
 

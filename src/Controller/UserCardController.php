@@ -17,8 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
- * Class UserCardController
- * @package App\Controller
  * @Route(path="/usercard")
  */
 class UserCardController extends Controller

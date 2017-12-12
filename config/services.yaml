@@ -36,6 +36,5 @@ services:
         public: true
 
     App\EventListener\UserCardSubscriber:
-        public: true
-        arguments: [ '@doctrine.orm.entity_manager', '@session', '%nb_max_usercard%']
-        autowire: false
+        arguments:
+            $nbMaxUserCard: '%nb_max_usercard%'
