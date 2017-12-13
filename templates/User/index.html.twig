@@ -9,7 +9,7 @@
 
 			{% if is_granted('app_usercard_show', a_userCard) == true %}
 				<li>
-					<a href="{{ path('show_usercard', {'id': a_userCard.card.id}) }}">{{ a_userCard.card.name }}</a> -
+					<a href="{{ path('show_usercard', {'id': a_userCard.id}) }}">{{ a_userCard.card.name }}</a> -
 					<a href="{{ path('edit_usercard', {'id': a_userCard.id}) }}">Editer</a>
 					<a href="{{ path('delete_usercard', {'id': a_userCard.id}) }}">Supprimer</a>
 				</li>

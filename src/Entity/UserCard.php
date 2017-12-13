@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -19,16 +20,22 @@ class UserCard{
 	
 	/**
 	 * @ORM\Column(type="integer")
+	 * @Assert\NotBlank(message="Veuillez entrer une valeur pour l'attaque")
+	 * @Assert\Type("integer", message="Le type n'est pas autorisé")
 	 */
 	private $attack;
 
 	/**
 	 * @ORM\Column(type="integer")
+	 * @Assert\NotBlank(message="Veuillez entrer une valeur pour la defense")
+	 * @Assert\Type("integer", message="Le type n'est pas autorisé")
 	 */
 	private $defense;
 	
 	/**
 	 * @ORM\Column(type="integer")
+	 * @Assert\NotBlank(message="Veuillez entrer une valeur pouur l'action point")
+	 * @Assert\Type("integer", message="Le type n'est pas autorisé")
 	 */
 	private $actionPoint;
 	

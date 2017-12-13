@@ -22,6 +22,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class UserCardController
@@ -85,7 +86,12 @@ class UserCardController extends Controller{
 	 * @param AuthorizationCheckerInterface $authorizationChecker
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
 	 */
-	public function editUserCard(Request $request, UserCard $userCard, AuthorizationCheckerInterface $authorizationChecker){
+	public function editUserCard(Request $request, UserCard $userCard, AuthorizationCheckerInterface $authorizationChecker, ValidatorInterface $validator){
+		
+		/*
+		 * ValidatorInterface : permet de recuperer les erreurs sur un objets ex : $validator->validate($userCard)
+		 */
+		
 		
 		if(false === $authorizationChecker->isGranted(AppAccess::UserCardEdit, $userCard)){
 			return $this->redirectToRoute("user_index", [], 302);
@@ -159,7 +165,7 @@ class UserCardController extends Controller{
 	 */
 	public function showUserCard(UserCard $userCard, AuthorizationCheckerInterface $authorizationChecker){
 		
-		if(false === $authorizationChecker->isGranted(AppAccess::UserCardDelete, $userCard)){
+		if(false === $authorizationChecker->isGranted(AppAccess::UserCardShow, $userCard)){
 			return $this->redirectToRoute("user_index", [], 302);
 		}
 		

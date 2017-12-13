@@ -34,6 +34,9 @@ services:
     App\Entity\UserCard:
       public: true
 
+    App\Entity\User:
+      public: true
+
     App\Entity\LogUserCard:
       public: true
 
