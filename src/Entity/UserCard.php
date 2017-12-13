@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -20,15 +21,24 @@ class UserCard
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Pas vide !")
+     * @Assert\Type(type="integer")
+     * @Assert\LessThan("10")
      */
     private $attack = 2;
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Pas vide !")
+     * @Assert\Type(type="integer")
+     * @Assert\LessThan("10")
      */
     private $defense = 2;
 
     /**
      * @ORM\Column(type="integer", name="action_point")
+     * @Assert\NotBlank(message="Pas vide !")
+     * @Assert\Type(type="integer")
+     * @Assert\LessThan("10")
      */
     private $actionPoint = 2;
 
