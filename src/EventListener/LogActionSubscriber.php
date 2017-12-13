@@ -17,8 +17,7 @@ class LogActionSubscriber implements EventSubscriberInterface
     private $logAction;
     private $token;
 
-    public function __construct(EntityManagerInterface $entityManager, TokenStorageInterface $token, LogAction $logAction)
-    {
+    public function __construct(EntityManagerInterface $entityManager, TokenStorageInterface $token, LogAction $logAction ) {
         $this->em = $entityManager;
         $this->logAction = $logAction;
         $this->token = $token;

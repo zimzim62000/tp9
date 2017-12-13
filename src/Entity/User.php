@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -25,11 +26,31 @@ class User implements UserInterface, \Serializable
 
 
     /**
+     * @Assert\NotBlank()
+     *
+     * @Assert\Length(
+     * min = 15,
+     * minMessage = "Your email must be at least {{ limit }} characters long"
+     * )
      * @ORM\Column(type="string")
      */
     private $password;
 
     /**
+     * @Assert\NotBlank()
+     *
+     * @Assert\Length(
+     * min = 5,
+     * minMessage = "Your password must be at least {{ limit }} characters long",
+     * groups="create"
+     * )
+     *
+     * @Assert\Length(
+     * min = 10,
+     * minMessage = "Your password must be at least {{ limit }} characters long",
+     * groups="edit"
+     * )
+     *
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
