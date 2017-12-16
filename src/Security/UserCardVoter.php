@@ -1,22 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: manuel.renaudineau
- * Date: 11/12/17
- * Time: 16:36
- */
 
 namespace App\Security;
 
 use App\AppAccess;
 use App\Entity\User;
-use App\Entity\Card;
+use App\Entity\UserCard;
 
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-class UserCardVoter
+
+class UserCardVoter extends Voter
 {
+
     private $decisionManager;
 
     public function __construct(AccessDecisionManagerInterface $decisionManager)
@@ -24,15 +20,18 @@ class UserCardVoter
         $this->decisionManager = $decisionManager;
     }
 
-    const VIEW = AppAccess::CardShow;
+    const VIEW = AppAccess::UserCardShow;
+    const ADD = AppAccess::UserCardAdd;
+    const EDIT = AppAccess::UserCardEdit;
+    const DELETE = AppAccess::UserCardDelete;
 
     protected function supports($attribute, $subject)
     {
-        if(!in_array($attribute, array(self::VIEW))){
+        if(!in_array($attribute, array(self::VIEW, self::EDIT, self::DELETE))){
             return false;
         }
 
-        if(!$subject instanceof Card){
+        if(!$subject instanceof UserCard){
             return false;
         }
 
@@ -41,19 +40,22 @@ class UserCardVoter
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        if (!$this->decisionManager->decide($token, array('ROLE_ADMIN'))) {
-            return false;
-        }
-
         $user = $token->getUser();
 
         if(!$user instanceof User){
             return false;
         }
 
+        if ($this->decisionManager->decide($token, array('ROLE_ADMIN')) === true && $attribute !== self::ADD) {
+            return true;
+        }
+
         switch($attribute){
+            case self::ADD:
             case self::VIEW:
-                return $subject->getVisible();
+            case self::EDIT:
+            case self::DELETE:
+                return $subject->getUser()->getId() === $user->getId();
             default:
                 throw new \LogicException('This code should not be reached!');
         }

@@ -12,25 +12,25 @@ class LoadUser extends Fixture
 
     public function load(ObjectManager $manager)
     {
-
-        for($i=0;$i<3;$i++){
         $user = new User();
-
-        $user->setFirstname('User'.$i);
-        $user->setLastname('User'.$i);
-        $user->setEmail('user'.$i.'@user.fr');
-        $user->setBirthday(new \DateTime('2000/01/01'));
-
+        $user->setEmail('user@user.fr');
         $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD);
         $user->setPassword($password);
-
-        $this->addReference('user'.$i, $user);
-
         $manager->persist($user);
+
+
+        $user = new User();
+        $user->setEmail('user1@user.fr');
+        $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD);
+        $user->setPassword($password);
+        $manager->persist($user);
+
+        $user = new User();
+        $user->setEmail('user2@user.fr');
+        $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD);
+        $user->setPassword($password);
+        $manager->persist($user);
+
         $manager->flush();
-        }
-
-
-
     }
 }

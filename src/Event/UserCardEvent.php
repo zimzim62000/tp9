@@ -1,35 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: manuel.renaudineau
- * Date: 04/12/17
- * Time: 15:36
- */
 
 namespace App\Event;
+
 use App\Entity\UserCard;
 use Symfony\Component\EventDispatcher\Event;
 
-class UserCardEvent extends Event{
+class UserCardEvent extends Event
+{
+    protected $userCard;
 
-    private $usercard;
-
-    /**
-     * @return mixed
-     */
-    public function getUsercard()
+    public function getUserCard()
     {
-        return $this->usercard;
+        return $this->userCard;
     }
 
-    /**
-     * @param mixed $usercard
-     */
-    public function setUsercard($usercard)
+    public function setUserCard(UserCard $userCard)
     {
-        $this->usercard = $usercard;
+        $this->userCard = $userCard;
     }
-
-
-
 }
