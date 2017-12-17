@@ -44,7 +44,7 @@ class UserCardController extends Controller
             return $this->redirectToRoute("app_user_index");
         }
 
-        return $this->render("UserCard/register.html.twig", ["form" => $form->createView()]);
+        return $this->render("UserCard/new.html.twig", ["form" => $form->createView()]);
     }
 
 
