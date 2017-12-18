@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+    <style>
+        body{
+            background: black;
+        }
+        h1{
+            color: greenyellow;
+            font-size: 2.5rem;
+        }
+        h2{
+            color: white;
+            font-size: 2rem;
+        }
+		h3{
+            color: cyan;
+            font-size: 1.5rem;
+        }
+        hr{
+            color: yellow;
+        }
+        a{
+            color: cyan;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<h1>Le controle d'accées</h1>
+<h2>Les voters</h2>
+<h2>Fork : https://github.com/zimzim62000/tp9.git</h2>
+
+<h3>
+<?php<br />
+namespace App\Security;<br />
+use App\AppAccess;<br />
+use App\Entity\User;<br />
+use App\Entity\Card;<br />
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;<br />
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;<br />
+use Symfony\Component\Security\Core\Authorization\Voter\Voter;<br />
+class CardVoter extends Voter<br />
+{<br />
+    private $decisionManager;<br />
+    public function __construct(AccessDecisionManagerInterface $decisionManager)<br />
+    {<br />
+        $this->decisionManager = $decisionManager;<br />
+    }<br />
+    const VIEW = AppAccess::CardShow;<br />
+    protected function supports($attribute, $subject)<br />
+    {<br />
+        if(!in_array($attribute, array(self::VIEW))){<br />
+            return false;<br />
+        }<br />
+        if(!$subject instanceof Card){<br />
+            return false;<br />
+        }<br />
+        return true;<br />
+    }<br />
+    protected function voteOnAttribute($attribute, $subject, TokenInterface $token)<br />
+    {<br />
+        if (!$this->decisionManager->decide($token, array('ROLE_ADMIN'))) {<br />
+            return false;<br />
+        }<br />
+        $user = $token->getUser();<br />
+        if(!$user instanceof User){<br />
+            return false;<br />
+        }<br />
+        switch($attribute){<br />
+            case self::VIEW:<br />
+                return $subject->getVisible();<br />
+            default:<br />
+                throw new \LogicException('This code should not be reached!');<br />
+        }<br />
+    }<br />
+}
+</h3>
+<a href="exo_2.html">Exo2</a>
+</body>
+</html>
