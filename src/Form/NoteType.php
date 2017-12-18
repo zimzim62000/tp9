@@ -6,19 +6,17 @@
  * Time: 09:31
  */
 
-namespace App\Controller;
+namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\WeaponSkin;
 use ClassesWithParents\F;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType
+class NoteType
 {
     public function configureOptions(OptionsResolver $resolver){
         $resolver->setDefaults(array(
@@ -30,8 +28,15 @@ class UserType
 
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-            ->add("email",EmailType::class)
-            ->add("password",PasswordType::class);
+            ->add("note",NumberType::class)
+            ->add("user",EntityType::class, array(
+                'class' => User::class,
+                'choice_label' => 'email'
+            ))
+            ->add("skin",EntityType::class, array(
+                'class' => WeaponSkin::class,
+                'choice_label' => 'name',
+            ));
     }
 
 }

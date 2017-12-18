@@ -4,8 +4,8 @@ namespace App;
 
 final class AppAccess{
 
-    const UserCardShow   = "app_usercard_show";
-    const UserCardAdd    = "app_usercard_add";
-    const UserCardEdit   = "app_usercard_edit";
-    const UserCardDelete = "app_usercard_delete";
+    const UserNoteShow   = "app_noteskin_show";
+    const UserNoteAdd    = "app_noteskin_add";
+    const UserNoteEdit   = "app_noteskin_edit";
+    const UserNoteDelete = "app_noteskin_delete";
 }

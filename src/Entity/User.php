@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="tp_user")
+ * @ORM\Table(name="tpfinal")
  */
 class User implements UserInterface, \Serializable
 {
@@ -17,38 +17,33 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", unique=true)
      *
-     * @Assert\Email(groups={"new","edit"})
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(groups={"new", "edit"})
-     * @Assert\Length(min="5", groups={"new"})
-     * @Assert\Length(min="10", groups={"edit"})
      */
-    private $password;
+    protected $password;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    protected $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $updatedAt;
+    protected $updatedAt;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isAdmin = false;
+    protected $isAdmin = false;
 
     public function __construct()
     {

@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>note:</h1>
+    {% if is_granted('ROLE_ADMIN'==true) %}
+    <ul>
+        <li>Delete</li>
+        <li>Edit</li>
+    </ul>
+    {% endif %}
+
+    {% for n in note %}
+        <ul>
+            <li>{{ n.note }}</li>
+            <li>{{ n.createdAt | date}}</li>
+            <li>{{ n.updateAt | date }}</li>
+
+            <li><a href={{ path('entity_inventory_show', {'id' : n.id}) }}><button>show</button></a></li>
+        </ul>
+
+    {% endfor %}
+{% endblock %}

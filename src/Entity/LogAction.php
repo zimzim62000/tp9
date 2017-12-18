@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="tp_log_action")
@@ -16,13 +13,10 @@ class LogAction
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @ORM\Column(type="text")
      */
     private $log;
-
-
     /**
      * @return mixed
      */
@@ -30,17 +24,14 @@ class LogAction
     {
         return $this->id;
     }
-
     /**
      * @param mixed $id
      */
     public function setId($id)
     {
         $this->id = $id;
-
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -48,14 +39,12 @@ class LogAction
     {
         return $this->log;
     }
-
     /**
      * @param mixed $log
      */
     public function setLog($log)
     {
         $this->log = $log;
-
         return $this;
     }
 }

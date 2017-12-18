@@ -13,6 +13,7 @@ security:
     role_hierarchy:
         ROLE_USER: [ROLE_USER]
         ROLE_ADMIN: [ROLE_ADMIN, ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_SUPER_ADMIN, ROLE_ADMIN, ROLE_USER]
 
     firewalls:
         dev:
@@ -31,5 +32,4 @@ security:
         - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user, roles: ROLE_USER }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/card, roles: ROLE_USER }
-        - { path: ^/usercard, roles: ROLE_USER }
+        - { path: ^/superadmin, roles: ROLE_SUPER_ADMIN }

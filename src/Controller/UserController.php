@@ -3,12 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Security\UserVoter;
+use App\Controller\UserType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use App\Entity\UserCard;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -41,7 +40,9 @@ class UserController extends Controller
      *  @Route("/new", name="app_user_new")
      */
     public function newAction(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder){
-        $form = $this->createForm(UserType::class, null, ['validation_groups' => 'new']);
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $manager = $this->getDoctrine()->getManager();
         $form->handleRequest(($request));
 
         if ($form->isSubmitted() && $form->isValid()){
@@ -58,8 +59,6 @@ class UserController extends Controller
      *  @Route("/edit")
      */
     public function editAction(User $user,Request $request, EntityManagerInterface $manager){
-        $this->denyAccessUnlessGranted(UserVoter::USER_CAN_VIEW, $user);
-
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest();
         if ($form->isSubmitted() && $form->isValid()){

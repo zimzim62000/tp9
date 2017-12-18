@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+{% import "macro.html.twig" as macro %}
+
+{% block body %}
+    <h1>Weapon skin :</h1>
+    {% for s in weaponskin %}
+        <ul>
+            <li>{{ s.name }}</li>
+            <li>{{ s.text }}</li>
+            <li>{{ s.beauty }}</li>
+            <li>{{ s.type }}</li>
+            <li>{{ s.price }}</li>
+            <li>{{ s.createdAt | date}}</li>
+            <li>{{ s.updateAt | date }}</li>
+
+            <li><a href={{ path('entity_weaponskin_show', {'id' : s.id}) }}><button>show skin</button></a></li>
+        </ul>
+
+    {% endfor %}
+{% endblock %}
