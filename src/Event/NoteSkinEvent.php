@@ -13,7 +13,7 @@ class NoteSkinEvent extends Event
     {
         return $this->noteSkin;
     }
-
+    
     public function setNoteSkin(NoteSkin $noteSkin)
     {
         $this->noteSkin = $noteSkin;

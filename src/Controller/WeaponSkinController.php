@@ -46,4 +46,28 @@ class WeaponSkinController extends Controller
         
         return $this->render('WeaponSkin/show.html.twig', ['skin' => $skin, 'notes' => $notes, 'noteByUser' => $noteByUser]);
     }
+
+    /**
+     * @Route(
+     *     path="/magicRandom",
+     *     name="app_magic_random"
+     * )
+     */
+
+    public function magicRandomAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $weaponSkin = new WeaponSkin();
+
+        $weaponSkin->setCreatedAt(new \DateTime());
+        $weaponSkin->setUser($this->getUser());
+        $weaponSkin->setName("Magical");
+        $weaponSkin->getPrice(12.12);
+
+        $em->persist($weaponSkin);
+
+        $em->flush();
+
+        return $this->render('WeaponSkin/show.html.twig');
+    }
 }

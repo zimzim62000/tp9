@@ -28,10 +28,10 @@ class NoteSkinSubscriber implements EventSubscriberInterface
         ];
     }
 
-
     public function add(NoteSkinEvent $noteSkinEvent)
     {
         $this->persist($noteSkinEvent);
+        $this->em->flush();
         $this->session->getFlashBag()->add('success', 'note enregistrée !');
     }
 
@@ -39,11 +39,14 @@ class NoteSkinSubscriber implements EventSubscriberInterface
     {
         $this->em->persist($noteSkinEvent->getNoteSkin());
         $this->em->flush();
+        $this->session->getFlashBag()->add('success', 'note modifiée !');
     }
 
     public function remove(NoteSkinEvent $noteSkinEvent)
     {
         $this->em->remove($noteSkinEvent->getNoteSkin());
         $this->em->flush();
+
+        $this->session->getFlashBag()->add('success', 'note supprimée !');
     }
 }

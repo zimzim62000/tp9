@@ -2,59 +2,46 @@
 
 namespace App\Controller;
 
-
-use App\AppAccess;
 use App\Entity\NoteSkin;
+use App\Form\NoteSkinType;
 use App\Entity\WeaponSkin;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use App\Event\NoteSkinEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use App\AppEvent;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
+
+
 
 /**
- * @Route(path="/note")
+ * @Route(path="/noteSkin")
  */
 class NoteSkinController extends Controller
 {
     /**
-     * @Route(
-     *     path="/add/{id}",
-     *     name="add_note"
-     * )
+     * @Route(path="/{id}/new", name="app_noteskin_add")
+     *
      */
-    public function addNoteAction(WeaponSkin $skin)
+    public function addAction(Request $request, WeaponSkin $weaponSkin)
     {
+        $noteSkin = $this->get(NoteSkin::class);
 
+        $form = $this->createForm(NoteSkinType::class, $noteSkin);
 
-        return null;//$this->redirectToRoute('app_skin_show',['id' => $note->getSkin()->getId()]);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $event = $this->get(NoteSkinEvent::class);
+            $noteSkin->setSkin($weaponSkin);
+            $event->setNoteSkin($noteSkin);
+            $dispatcher = $this->get("event_dispatcher");
+            $dispatcher->dispatch(AppEvent::NOTE_SKIN_ADD, $event);
+
+            return $this->redirectToRoute("app_skin_index");
+        }
+
+        return $this->render("NoteSkin/new.html.twig", ["form" => $form->createView()]);
     }
-
-    /**
-     * @Route(
-     *     path="/edit/{id}",
-     *     name="edit_note"
-     * )
-     */
-    public function editNoteAction(WeaponSkin $skin)
-    {
-
-        return null;//$this->redirectToRoute('app_skin_show',['id' => $note->getSkin()->getId()]);
-    }
-
-
-    /**
-     * @Route(
-     *     path="/remove/{idNote}",
-     *     name="remove_note"
-     * )
-     */
-    public function removeNoteAction(NoteSkin $note){
-        $em = $this->getDoctrine()->getManager();
-
-        $em->remove($note);
-
-        $em->flush();
-
-        return $this->redirectToRoute('app_skin_show',['id' => $note->getSkin()->getId()]);
-    }
-
 }
