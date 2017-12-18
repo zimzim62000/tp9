@@ -70,7 +70,7 @@ class NoteController extends Controller
      */
     public function noterAction(Request $request)
     {
-
+        echo "FIXME";
     }
 
     /**
