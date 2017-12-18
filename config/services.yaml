@@ -60,3 +60,11 @@ services:
     App\Form\NoteSkinType:
         public: true
 
+    App\Event\WeaponSkinEvent:
+        arguments: ['@doctrine.orm.entity_manager']
+        public: true
+
+    App\Subscriber\WeaponSkinSubscriber:
+        arguments: ['@doctrine.orm.entity_manager']
+        public: true
+

@@ -10,6 +10,7 @@ namespace App\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -25,6 +26,7 @@ class NoteSkin
     private $id;
 
     /**
+     * @Assert\Range(min = 0, max = 20, minMessage = "You must enter at least 1 character", maxMessage = "You must enter less than 21 character")
      * @ORM\Column(type="decimal", scale=2)
      */
     private $note;

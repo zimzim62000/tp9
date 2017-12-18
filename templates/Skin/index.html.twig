@@ -5,6 +5,11 @@
 
     <h2>index Skin</h2>
 
+    {% if app.session.flashBag.has('success') %}
+        {% for msg in app.session.flashBag.get('success') %}
+           <p> {{ msg }} </p>
+        {% endfor %}
+
     <ul>
         {% for skin in skins %}
 

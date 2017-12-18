@@ -19,6 +19,7 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @var $email String
      * @ORM\Column(type="string")
      */
     private $email;
@@ -77,7 +78,6 @@ class User implements UserInterface
     }
 
 
-
     public function getRoles()
     {
         // TODO: Implement getRoles() method.
@@ -98,5 +98,12 @@ class User implements UserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
+    /**
+     * @return String
+     */
+    public function __toString()
+    {
+        return $this->email;
+    }
 
 }

@@ -14,4 +14,6 @@ class AppEvent
     const NOTE_SKIN_ADD = 'app.noteskin.add';
     const NOTE_SKIN_EDIT = 'app.noteskin.edit';
     const NOTE_SKIN_DELETE = 'app.noteskin.remove';
+
+    const WEAPON_SKIN_ADD = 'app.weaponskin.add';
 }
