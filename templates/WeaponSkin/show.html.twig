@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+{% import "macro.html.twig" as macro %}
+
+{% block body %}
+    <h1>{{ skin.name }}</h1>
+    <p>
+        créé le : {{ skin.createdAt|date("m/d/Y") }}<br>
+        appartient à : {{ skin.user.firstName }} {{ skin.user.lastName }}<br>
+        {% if skin.text is not null %}
+            description : {{ skin.text }}<br>
+        {% endif %}
+        beauté : {{ skin.beauty }}<br>
+        type : {{ skin.type }}<br>
+        prix : {{ skin.price }}
+    </p>
+
+    {% if aNote == false and not is_granted('ROLE_ADMIN')%}
+        <a href="{{ path("new_note", {id: skin.id}) }}">Ajouter une note</a>
+    {% endif %}
+    <ul>
+        {% for note in notes %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li>{{ macro.note(note.note) }} de {{ note.user.firstName }} - <a href="{{ path('edit_note', {id: note.id}) }}">Editer</a> - <a href="{{ path('del_note', {id: note.id}) }}">Supprimer</a></li>
+            {% else %}
+                <li>{{ macro.note(note.note) }} de {{ note.user.firstName }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
