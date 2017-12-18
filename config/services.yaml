@@ -27,3 +27,44 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Entity\User:
+        public: true
+
+    App\Entity\NoteSkin:
+        public: true
+
+    App\Entity\WeaponSkin:
+        public: true
+
+    App\Controller\WeaponSkinController:
+        arguments: ['@doctrine.orm.entity_manager']
+        public: true
+
+    App\Controller\ApiController:
+        arguments: ['@doctrine.orm.entity_manager']
+        public: true
+
+    App\Controller\RandomSkinController:
+        arguments: ['@doctrine.orm.entity_manager']
+        public: true
+
+    App\Event\NoteSkinEvent:
+        arguments: ['@doctrine.orm.entity_manager']
+        public: true
+
+    App\Subscriber\NoteSkinSubscriber:
+        arguments: ['@doctrine.orm.entity_manager']
+        public: true
+
+    App\Form\NoteSkinType:
+        public: true
+
+    App\Event\WeaponSkinEvent:
+        arguments: ['@doctrine.orm.entity_manager']
+        public: true
+
+    App\Subscriber\WeaponSkinSubscriber:
+        arguments: ['@doctrine.orm.entity_manager']
+        public: true
+

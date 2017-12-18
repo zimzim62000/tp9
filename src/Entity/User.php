@@ -7,9 +7,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="tp_user")
+ * @ORM\Table(name="ds_user")
  */
-class User implements UserInterface, \Serializable
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -19,24 +19,10 @@ class User implements UserInterface, \Serializable
     private $id;
 
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @var $email String
+     * @ORM\Column(type="string")
      */
     private $email;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $firstname;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $lastname;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $birthday;
 
     /**
      * @ORM\Column(type="string")
@@ -44,167 +30,80 @@ class User implements UserInterface, \Serializable
     private $password;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @return mixed
      */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isAdmin = false;
-
-    public function __construct()
-    {
-        $this->createdAt = $this->updatedAt = new \DateTime();
-    }
-
-    public function getId() : ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getEmail() : ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(?string $email) : void
-    {
-        $this->email = $email;
-    }
-
-    public function getFirstname() : ?string
-    {
-        return $this->firstname;
-    }
-
-    public function setFirstname(?string $firstname) : void
-    {
-        $this->firstname = $firstname;
-    }
-
-    public function getLastname() : ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(?string $lastname) : void
-    {
-        $this->lastname = $lastname;
-    }
-
-    public function getBirthday() : ?\DateTime
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(\DateTime $birthday) : void
-    {
-        $this->birthday = $birthday;
-    }
-
-    public function getPassword() : ?string
+    /**
+     * @return mixed
+     */
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword(?string $password) : void
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
     {
         $this->password = $password;
     }
 
-    public function getCreatedAt() : \DateTime
+    /**
+     * @return mixed
+     */
+    public function getEmail()
     {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt() : \DateTime
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTime $updatedAt) : void
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    public function isAdmin() : bool
-    {
-        return $this->isAdmin;
-    }
-
-    public function setIsAdmin(bool $isAdmin) : void
-    {
-        $this->isAdmin = $isAdmin;
+        return $this->email;
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $email
      */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+
     public function getRoles()
     {
-        $roles = ['ROLE_USER'];
-
-        if ($this->isAdmin()) {
-            $roles[] = 'ROLE_ADMIN';
-        }
-
-        return $roles;
+        // TODO: Implement getRoles() method.
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSalt()
     {
+        // TODO: Implement getSalt() method.
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUsername()
     {
         return $this->email;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function eraseCredentials()
     {
+        // TODO: Implement eraseCredentials() method.
     }
 
     /**
-     * {@inheritdoc}
+     * @return String
      */
-    public function serialize()
+    public function __toString()
     {
-        return serialize([
-            $this->id,
-            $this->email,
-            $this->firstname,
-            $this->lastname,
-            $this->isAdmin,
-            $this->password,
-        ]);
+        return $this->email;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function unserialize($serialized)
-    {
-        list(
-            $this->id,
-            $this->email,
-            $this->firstname,
-            $this->lastname,
-            $this->isAdmin,
-            $this->password) = unserialize($serialized);
-    }
 }
