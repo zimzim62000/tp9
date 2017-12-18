@@ -2,8 +2,9 @@
     <li><a href="{{ path('home_index') }}">Index</a></li>
     <li><a href="{{ path('user_index') }}">User</a></li>
     <li><a href="{{ path('admin_index') }}">Admin</a></li>
+    <li><a href="{{ path('skin_index') }}">Skin</a></li>
     {% if is_granted('ROLE_USER') %}
         <li><a href="{{ path('logout') }}">Déconnexion</a></li>
-        <li>I am {{ app.user.firstname }} {{ app.user.lastname }}</li>
+        <li>I am {{ app.user.email }}</li>
     {% endif %}
 </ul>

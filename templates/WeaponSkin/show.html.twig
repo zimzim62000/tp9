@@ -16,9 +16,7 @@
     {% endfor %}
 
     {% if sameUser == false %}
-    <form method="get" action="/note/ajouter">
-        <button type="submit">Ajouter Note</button>
-    </form>
+        <li><h3><a href="{{ path('note_add', {'id': skin.id}) }}">Insert</a></h3></li>
     {% endif %}
 
 {% endblock %}

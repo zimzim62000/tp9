@@ -9,6 +9,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity
@@ -25,6 +27,12 @@ class NoteSkin
 
     /**
      * @ORM\Column(type="decimal", precision=2)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 20,
+     *      minMessage = "Must be at least {{ limit }}",
+     *      maxMessage = "Cannot be more than {{ limit }}"
+     * )
      */
     private $note;
 
