@@ -27,3 +27,12 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Entity\NoteSkin:
+        public: true
+
+    App\Event\AppEvent:
+        public: true
+
+    App\Event\SkinNoteEvent:
+        public: true
