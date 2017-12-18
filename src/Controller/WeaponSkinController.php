@@ -7,6 +7,7 @@
  */
 
 namespace App\Controller;
+use App\Entity\NoteSkin;
 use App\Entity\WeaponSkin;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,7 +31,8 @@ class WeaponSkinController extends Controller
      * @Route("/show/{id}", name="app_weaponskin_show")
      */
     public function showAction(WeaponSkin $weaponSkin){
-        $weapon = $this->getDoctrine()->getRepository(WeaponSkin::class)->findBy(['id'=>$weaponSkin->getId()]);
-        return $this->render("WeaponSkin/show.html.twig",["weapon" => $weapon]);
+        $weapon = $this->getDoctrine()->getRepository(WeaponSkin::class)->findOneBy(['id'=>$weaponSkin->getId()]);
+        $notes = $this->getDoctrine()->getRepository(NoteSkin::class)->findBy(['skin'=>$weaponSkin->getId()]);
+        return $this->render("WeaponSkin/show.html.twig",["weapon" => $weapon, "notes" =>$notes]);
     }
 }

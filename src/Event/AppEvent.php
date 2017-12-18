@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Event;
 
 final class AppEvent{
     const NOTE_ADD = 'app.note.add';

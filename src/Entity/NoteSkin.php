@@ -26,6 +26,9 @@ class NoteSkin
 
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 20)
      */
     private $note;
 

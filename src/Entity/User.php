@@ -75,8 +75,6 @@ class User implements UserInterface, \Serializable
         $this->isAdmin = $isAdmin;
     }
 
-
-
     /**
      * {@inheritdoc}
      */

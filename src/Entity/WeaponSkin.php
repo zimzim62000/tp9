@@ -43,7 +43,7 @@ class WeaponSkin
     /**
      * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $updateAt;
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="string")
