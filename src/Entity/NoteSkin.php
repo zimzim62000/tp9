@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -21,6 +20,9 @@ class NoteSkin
 
     /**
      * @ORM\Column(type="decimal", precision=4, scale=2)
+     * @Assert\NotBlank()
+     * @Assert\GreaterThanOrEqual(value="0")
+     * @Assert\LessThanOrEqual(value="20")
      */
     private $note;
 

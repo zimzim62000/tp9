@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -41,11 +40,19 @@ class WeaponSkin
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\EqualTo("common")
+     * @Assert\EqualTo("rare")
+     * @Assert\EqualTo("épik")
+     * @Assert\EqualTo("légendary")
      */
     private $beauty;
 
     /**
-     * @ORM\Column()
+     * @ORM\Column(type="string")
+     * @Assert\EqualTo("sniper")
+     * @Assert\EqualTo("rifle")
+     * @Assert\EqualTo("pistol")
+     * @Assert\EqualTo("sknif")
      */
     private $type;
 
