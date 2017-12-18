@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @Route(path="/user")
  */
-class UserController extends Controller
+class UserControler extends Controller
 {
     /**
      * @Route(

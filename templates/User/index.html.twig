@@ -1,8 +1,17 @@
 {% extends 'base.html.twig' %}
 
+{% import "macro.html.twig" as macro %}
 
 {% block body %}
 
     <h2>index user</h2>
+    <ul>
+        {% for weaponskin in weaponskin %}
+            <li>
+
+                {{ macro.weaponskin(weaponskin) }}
+            </li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}
