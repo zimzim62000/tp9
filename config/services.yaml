@@ -41,3 +41,7 @@ services:
         arguments: ['@doctrine.orm.entity_manager']
         public: true
 
+    App\Event\NoteSkinEvent:
+        arguments: ['@doctrine.orm.entity_manager']
+        public: true
+
