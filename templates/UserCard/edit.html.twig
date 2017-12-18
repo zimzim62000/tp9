@@ -1,0 +1,7 @@
+
+{% block body %}
+    {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    <a href="{{ path('app_user_index') }}">retour</a>
+{% endblock body %}
