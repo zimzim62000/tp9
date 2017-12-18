@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <li>Name: {{ skin.name }}</li>
+    <li>Creation: {{ skin.createdat|date('Y-m-d') }}</li>
+    <li>Auteur: {{ skin.user.email }}</li>
+    <li>Description: {{ skin.text }}</li>
+    <li>Beauté: {{ skin.beauty }}</li>
+    <li>Type: {{ skin.type }}</li>
+    <li>Prix: {{ skin.price }}</li>
+
+    {% for note in notes %}
+        <li>Note: {{ note.note }}</li>
+    {% endfor %}
+
+    {% if sameUser == false %}
+        <li><h3><a href="{{ path('note_add', {'id': skin.id}) }}">Insert</a></h3></li>
+    {% endif %}
+
+{% endblock %}

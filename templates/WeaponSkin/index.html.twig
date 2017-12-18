@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    {% for skin in skins %}
+        <a href="/weaponSkin/{{ skin.id }}">{{ skin.name }}</a>
+    {% endfor %}
+
+{% endblock %}
