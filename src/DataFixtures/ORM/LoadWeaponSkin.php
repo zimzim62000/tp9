@@ -24,6 +24,7 @@ class LoadWeaponSkin extends Fixture
         $skin->setType("sniper");
         $skin->setPrice("2.22");
         $skin->setCreatedAt(new \DateTime());
+        $skin->setUpdateAt(new \DateTime());
         $skin->setUser($this->getReference("user1"));
 
         $this->addReference("skin",$skin);
@@ -36,6 +37,7 @@ class LoadWeaponSkin extends Fixture
         $skin2->setType("pistol");
         $skin2->setPrice("0.52");
         $skin2->setCreatedAt(new \DateTime());
+        $skin2->setUpdateAt(new \DateTime());
         $skin2->setUser($this->getReference("user2"));
 
         $this->addReference("skin2",$skin2);
@@ -48,6 +50,7 @@ class LoadWeaponSkin extends Fixture
         $skin3->setType("rifle");
         $skin3->setPrice("4.70");
         $skin3->setCreatedAt(new \DateTime());
+        $skin3->setUpdateAt(new \DateTime());
         $skin3->setUser($this->getReference("user3"));
 
         $this->addReference("skin3",$skin3);
@@ -60,6 +63,7 @@ class LoadWeaponSkin extends Fixture
         $skin4->setType("rifle");
         $skin4->setPrice("7.70");
         $skin4->setCreatedAt(new \DateTime());
+        $skin4->setUpdateAt(new \DateTime());
         $skin4->setUser($this->getReference("user1"));
 
         $this->addReference("skin4",$skin4);
@@ -72,6 +76,7 @@ class LoadWeaponSkin extends Fixture
         $skin5->setType("knife");
         $skin5->setPrice("1.3");
         $skin5->setCreatedAt(new \DateTime());
+        $skin5->setUpdateAt(new \DateTime());
         $skin5->setUser($this->getReference("user2"));
 
         $this->addReference("skin5",$skin5);
