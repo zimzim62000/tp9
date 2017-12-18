@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% import "macro.html.twig" as macro %}
+
+{% block body %}
+
+<h2>show Skin</h2>
+
+    <h2> {{ skin.name }}</h2>
+    <h3>Créateur : {{ skin.user.email }}</h3>
+    <ul>
+        <li>Date création : {{ skin.createdAt|date('Y-m-d H:i:s') }}</li>
+        <li>Description : {{ skin.text }}</li>
+        <li>Beauté: {{ skin.beauty }}</li>
+        <li>Type : {{ skin.type }}</li>
+        <li>Prix  : {{ skin.price }} $</li>
+    </ul>
+
+    <h2>Notes</h2>
+
+    {% for note in notes %}
+
+        {{ macro.noteSkin(note) }}
+
+
+    {% endfor %}
+
+
+
+
+
+    {% if app.user.isAdmin%}
+        <input type="submit" value="Modifier">
+        <input type="submit" value="Supprimer" action="{{ path('note_delete', {'id': note.id}) }}">
+    {% elseif  skin.user.email !=app.user.email %}
+        <input type="submit" value="Noter"> %}
+    {% endif %}
+
+
+
+
+{% endblock %}
