@@ -2,6 +2,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -18,6 +19,9 @@ class NoteSkin
 
     /**
      * @ORM\Column(type="decimal", scale=2)
+     * @Assert\Range(min = 0, max = 20, minMessage = "La note minimale est 0",
+     *     maxMessage = "La note maximale est 20"
+     * )
      */
     private $note;
 

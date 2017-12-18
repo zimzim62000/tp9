@@ -11,6 +11,8 @@ namespace App\Form;
 
 use App\Entity\WeaponSkin;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -30,7 +32,24 @@ class WeaponSkinType extends AbstractType
         $builder
             ->add("name")
             ->add("text")
-            ->add("description", TextareaType::class)
+            ->add("beauty")
+            ->add("beauty", ChoiceType::class, array(
+                'choices' =>array(
+                    'common' => 'common',
+                    'rare' => 'rare',
+                    'épik' => 'épik',
+                    'légendary' => 'légendary',
+                )
+            ))
+            ->add("type", ChoiceType::class, array(
+                'choices' =>array(
+                    'sniper' => 'sniper',
+                    'rifle' => 'rifle',
+                    'pistol' => 'pistol',
+                    'knife' => 'knife',
+                )
+            ))
+            ->add("price")
             ->add("save", SubmitType::class, ["label" => "Créer"])
         ;
     }

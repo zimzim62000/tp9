@@ -11,7 +11,6 @@ namespace App\Controller;
 
 use App\AppEvent;
 use App\Entity\NoteSkin;
-use App\Entity\User;
 use App\Entity\WeaponSkin;
 use App\Event\NoteSkinEvent;
 use App\Form\NoteSkinType;
@@ -45,5 +44,43 @@ class NoteSkinController extends Controller
             return $this->redirectToRoute("skin_index");
         }
         return $this->render("Note/new.html.twig", ["form"=>$form->createView()]);
+    }
+
+    /**
+     * @Route(path="/{id}/edit", name="note_edit")
+     *
+     */
+    public function editAction(Request $request, NoteSkin $noteSkin)
+    {
+        $form = $this->createForm(NoteSkinType::class, $noteSkin);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $event = $this->get(NoteSkinEvent::class);
+            $event->setNote($noteSkin);
+            $dispatcher = $this->get("event_dispatcher");
+            $dispatcher->dispatch(AppEvent::NOTE_EDIT, $event);
+
+            return $this->redirectToRoute("skin_index");
+        }
+
+        return $this->render("Note/edit.html.twig", ["form" => $form->createView()]);
+    }
+
+    /**
+     * @Route(path="/{id}/delete", name="note_delete")
+     *
+     */
+    public function deleteAction(NoteSkin $noteSkin)
+    {
+        $event = $this->get(NoteSkinEvent::class);
+        $event->setNote($noteSkin);
+        $dispatcher = $this->get("event_dispatcher");
+        $dispatcher->dispatch(AppEvent::NOTE_DEL, $event);
+
+        return $this->redirectToRoute("skin_index");
+
     }
 }

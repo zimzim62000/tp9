@@ -26,7 +26,9 @@ class NoteSkinSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return[
-            AppEvent::NOTE_ADD => array('add', 0)
+            AppEvent::NOTE_ADD => array('add', 0),
+            AppEvent::NOTE_EDIT => array('edit', 0),
+            AppEvent::NOTE_DEL => array('delete', 0),
         ];
     }
 
@@ -34,6 +36,20 @@ class NoteSkinSubscriber implements EventSubscriberInterface
     {
         $note = $skinEvent->getNote();
         $this->entityManager->persist($note);
+        //\mail("admin@admin.fr", "Ajout d'une note", "Nouvelle note ajoutée");
         $this->entityManager->flush();
     }
+
+    public function edit(NoteSkinEvent $skinEvent)
+    {
+        $this->entityManager->persist($skinEvent->getNote());
+        $this->entityManager->flush();
+    }
+
+    public function delete(NoteSkinEvent $skinEvent)
+    {
+        $this->entityManager->remove($skinEvent->getNote());
+        $this->entityManager->flush();
+    }
+
 }

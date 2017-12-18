@@ -9,11 +9,14 @@
         <br/>
         Rareté : {{ skin.beauty }} - Type : {{ skin.type }} - Prix : {{ skin.price }} $
         <br/>
+        <a href="{{ path('skin_edit', {id: skin.id}) }}">Editer le skin</a>
+        <br/>
+        <a href="{{ path('skin_delete', {id: skin.id}) }}">Supprimer le skin</a>
 
         Notes:
         <br/>
         {%  for note in notes|sort %}
-            {{ macro.note(note.note) }} par {{ note.user }}
+            {{ macro.note(note.note) }} par {{ note.user }} <a href="{{ path('note_edit', {id: note.id}) }}">Editer la note <a href="{{ path('note_delete', {id: note.id}) }}">Supprimer la note</a></a>
             <br/>
 
         {%  endfor %}
