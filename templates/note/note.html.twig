@@ -1,4 +1,5 @@
 {% extends "base.html.twig" %}
+{% import "macro.html.twig" as macro %}
 
 {% block body %}
     <h1>note:</h1>
@@ -15,7 +16,9 @@
             <li>{{ n.createdAt | date}}</li>
             <li>{{ n.updateAt | date }}</li>
 
-            <li><a href={{ path('entity_inventory_show', {'id' : n.id}) }}><button>show</button></a></li>
+            <li><a href={{ path('entity_note_show', {'id' : n.id}) }}><button>show</button></a></li>
+
+            <li><a href={{ path('entity_note_tri' }}><button>show</button></a></li>
         </ul>
 
     {% endfor %}

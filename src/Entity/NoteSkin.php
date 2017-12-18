@@ -25,6 +25,10 @@ class NoteSkin
 
     /**
      * @Column(type="decimal", precision=2, scale=2)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 20,
+     *     )
      */
     protected $note;
     /**

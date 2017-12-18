@@ -28,15 +28,16 @@ class NoteType
 
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-            ->add("note",NumberType::class)
-            ->add("user",EntityType::class, array(
-                'class' => User::class,
-                'choice_label' => 'email'
-            ))
-            ->add("skin",EntityType::class, array(
-                'class' => WeaponSkin::class,
-                'choice_label' => 'name',
-            ));
+            ->add("note",NumberType::class);
+
+            //->add("user",EntityType::class, array(
+            //    'class' => User::class,
+            //    'choice_label' => 'email'
+            //))
+            //->add("skin",EntityType::class, array(
+            //    'class' => WeaponSkin::class,
+            //   'choice_label' => 'name',
+            //));
     }
 
 }

@@ -56,7 +56,7 @@ class WeaponSkinType
             ->add("user",EntityType::class, array(
                 'class' => User::class,
                 'choice_label' => 'email',
-            ))
+            ));
     }
 
 }

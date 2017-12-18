@@ -4,8 +4,8 @@ namespace App;
 
 final class AppAccess{
 
-    const UserNoteShow   = "app_noteskin_show";
-    const UserNoteAdd    = "app_noteskin_add";
-    const UserNoteEdit   = "app_noteskin_edit";
-    const UserNoteDelete = "app_noteskin_delete";
+    const NoteShow   = "app_noteskin_show";
+    const NoteAdd    = "app_noteskin_add";
+    const NoteEdit   = "app_noteskin_edit";
+    const NoteDelete = "app_noteskin_delete";
 }
