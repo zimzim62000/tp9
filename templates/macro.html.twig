@@ -1,0 +1,19 @@
+{% macro noteSkin(noteSkin) %}
+    <div class="noteSkin">
+        {% if noteSkin.note < 8 %}
+            <p style="color: red">{{noteSkin.note}}</p>
+            <p style="color: black">{{noteSkin.user.email}}</p>
+        {%  elseif noteSkin.note < 12 %}
+            <p style="color: orange">{{noteSkin.note}}</p>
+            <p style="color: black">{{noteSkin.user.email}}</p>
+
+        {%  elseif noteSkin.note < 16 %}
+            <p style="color: yellow">{{noteSkin.note}}</p>
+            <p style="color: black">{{noteSkin.user.email}}</p>
+        {%  else %}
+            <p style="color: green">{{noteSkin.note}}</p>
+            <p style="color: black">{{noteSkin.user.email}}</p>
+        {% endif %}
+
+    </div>
+{% endmacro %}
