@@ -2,6 +2,7 @@
 
 namespace App\Event;
 
+use App\Entity\NoteSkin;
 use Symfony\Component\EventDispatcher\Event;
 
 
@@ -13,5 +14,24 @@ use Symfony\Component\EventDispatcher\Event;
  */
 class NoteSkinEvent extends Event
 {
+    /**
+     * @var NoteSkin
+     */
+    private $noteSkin;
 
+    /**
+     * @return NoteSkin
+     */
+    public function getNoteSkin()
+    {
+        return $this->noteSkin;
+    }
+
+    /**
+     * @param NoteSkin $noteSkin
+     */
+    public function setNoteSkin($noteSkin)
+    {
+        $this->noteSkin = $noteSkin;
+    }
 }

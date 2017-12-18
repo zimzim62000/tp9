@@ -9,9 +9,10 @@
 namespace App\Form;
 
 
+use App\Entity\NoteSkin;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -30,19 +31,18 @@ class NoteSkinType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array('data_class' => NoteSkinType::class));
+        $resolver->setDefaults(array('data_class' => NoteSkin::class));
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('note', IntegerType::class)
-            ->add('captcha', CheckboxType::class, array('label' => 'Are you a robot ?', 'required' => true ))
+        $builder->add('note', NumberType::class, array('scale' => 2))
+            ->add('captcha', CheckboxType::class, array('label' => 'Are you a robot ?', 'required' => true , 'mapped' => false))
             ->addEventListener(FormEvents::PRE_SET_DATA, array($this, 'onPreSetData'));
     }
 
     public function onPreSetData(FormEvent $event)
     {
-        $noteSkin = $event->getData();
         $form = $event->getForm();
         if ($this->token->getToken()->getRoles() == 'ROLE_ADMIN'){
             $form->remove('captcha');
