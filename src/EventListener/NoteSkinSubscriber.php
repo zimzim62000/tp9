@@ -26,6 +26,8 @@ class NoteSkinSubscriber implements EventSubscriberInterface
     {
         return [
             AppEvent::NOTE_ADD => array('add', 0),
+            AppEvent::NOTE_EDIT => array('persist', 0),
+            AppEvent::NOTE_DELETE => array('remove', 0),
         ];
     }
 

@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\AppAccess;
 use App\Entity\NoteSkin;
 use App\AppEvent;
 use App\Entity\WeaponSkin;
@@ -23,7 +24,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 class NoteSkinController extends Controller
 {
     /**
-     * @Route(path="/{id}/new", name="app_note_new")
+     * @Route(path="/new/{id}", name="app_note_new")
      *
      */
     public function newAction(Request $request,WeaponSkin $weaponSkin)
@@ -40,5 +41,54 @@ class NoteSkinController extends Controller
             $this->redirectToRoute("home_index");
         }
         return $this->render("NoteSkin/add.html.twig", ["form" => $form->createView()]);
+    }
+
+    /**
+     * @Route(path="/edit/{id}", name="app_note_edit")
+     *
+     */
+    public function editAction(Request $request, NoteSkin $noteSkin, AuthorizationCheckerInterface $authorizationChecker)
+    {
+
+        if(false === $authorizationChecker->isGranted(AppAccess::NoteEdit, $noteSkin)){
+            $this->addFlash('error', 'access deny !');
+            return $this->redirectToRoute("skin_index");
+        }
+
+        $form = $this->createForm(NoteSkinType::class, $noteSkin);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $event = $this->get(NoteSkinEvent::class);
+            $event->setNoteSkin($noteSkin);
+            $dispatcher = $this->get("event_dispatcher");
+            $dispatcher->dispatch(AppEvent::NOTE_EDIT, $event);
+
+            return $this->redirectToRoute("home_index");
+        }
+
+        return $this->render("NoteSkin/edit.html.twig", ["form" => $form->createView()]);
+    }
+
+    /**
+     * @Route(path="/{id}/delete", name="app_note_delete")
+     *
+     */
+    public function deleteAction(NoteSkin $noteSkin, AuthorizationCheckerInterface $authorizationChecker)
+    {
+        if(false === $authorizationChecker->isGranted(AppAccess::NoteEdit, $noteSkin)){
+            $this->addFlash('error', 'access deny !');
+            return $this->redirectToRoute("home_index");
+        }
+
+        $event = $this->get(NoteSkinEvent::class);
+        $event->setNoteSkin($noteSkin);
+        $dispatcher = $this->get("event_dispatcher");
+        $dispatcher->dispatch(AppEvent::NOTE_DELETE, $event);
+
+        return $this->redirectToRoute("home_index");
+
     }
 }

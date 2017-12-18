@@ -25,7 +25,7 @@ class WeaponSkinController extends Controller
      */
     public function indexAction()
     {
-        $this->get(NoteSkin::class);
+
         $em = $this->getDoctrine()->getManager();
         $skins = $em->getRepository(WeaponSkin::class)->findAll();
         return $this->render('WeaponSkin/index.html.twig', ['skins' => $skins]);

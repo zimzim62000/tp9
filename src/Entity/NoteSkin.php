@@ -28,6 +28,7 @@ class NoteSkin
     private $id;
     /**
      * @ORM\Column(type="float", precision=2, scale=4)
+     * @Assert\Range(min=0,max=20)
      */
     private $note;
     /**
