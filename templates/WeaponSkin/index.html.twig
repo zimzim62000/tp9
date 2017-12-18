@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h2>index WeaponSkin</h2>
+    <ul>
+        {% for weaponSkin in weaponSkins %}
+            <li>
+                <h6>{{ WeaponSkin.name }}</h6>
+                <h6>{{ WeaponSkin.price }}</h6>
+                <h6>{{ WeaponSkin.user }}</h6>
+                <h6><a href="{{ path('app_weapons_skins_show', {'id': WeaponSkin.id}) }}">Show</a></h6>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

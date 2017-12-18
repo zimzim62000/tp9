@@ -8,176 +8,90 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="tp_user")
+ * @ORM\Table(name="users")
  */
-class User implements UserInterface, \Serializable
-{
+class User {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string")
      */
     private $email;
-
-
     /**
-     * @Assert\NotBlank()
-     *
-     * @Assert\Length(
-     * min = 15,
-     * minMessage = "Your email must be at least {{ limit }} characters long"
-     * )
      * @ORM\Column(type="string")
      */
     private $password;
-
-    /**
-     * @Assert\NotBlank()
-     *
-     * @Assert\Length(
-     * min = 5,
-     * minMessage = "Your password must be at least {{ limit }} characters long",
-     * groups="create"
-     * )
-     *
-     * @Assert\Length(
-     * min = 10,
-     * minMessage = "Your password must be at least {{ limit }} characters long",
-     * groups="edit"
-     * )
-     *
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
-
     /**
      * @ORM\Column(type="boolean")
      */
     private $isAdmin = false;
 
-    public function __construct()
-    {
-        $this->createdAt = $this->updatedAt = new \DateTime();
-    }
-
-    public function getId() : ?int
+    /**
+     * @return mixed
+     */
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getEmail() : ?string
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
     {
         return $this->email;
     }
 
-    public function setEmail(?string $email) : void
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
     {
         $this->email = $email;
     }
 
-    public function getPassword() : ?string
+    /**
+     * @return mixed
+     */
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword(?string $password) : void
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
     {
         $this->password = $password;
     }
 
-    public function getCreatedAt() : \DateTime
-    {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt() : \DateTime
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTime $updatedAt) : void
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    public function isAdmin() : bool
+    /**
+     * @return mixed
+     */
+    public function getIsAdmin()
     {
         return $this->isAdmin;
     }
 
-    public function setIsAdmin(bool $isAdmin) : void
+    /**
+     * @param mixed $isAdmin
+     */
+    public function setIsAdmin($isAdmin)
     {
         $this->isAdmin = $isAdmin;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getRoles()
-    {
-        $roles = ['ROLE_USER'];
-
-        if ($this->isAdmin()) {
-            $roles[] = 'ROLE_ADMIN';
-        }
-
-        return $roles;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSalt()
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUsername()
-    {
-        return $this->email;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function eraseCredentials()
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function serialize()
-    {
-        return serialize([
-            $this->id,
-            $this->email,
-            $this->isAdmin,
-            $this->password,
-        ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function unserialize($serialized)
-    {
-        list(
-            $this->id,
-            $this->email,
-            $this->isAdmin,
-            $this->password) = unserialize($serialized);
-    }
 }

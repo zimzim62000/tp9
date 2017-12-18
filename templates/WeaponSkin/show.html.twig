@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h2>show WeaponSkin</h2>
+
+<ul>
+    <li>{{ WeaponSkin.name }}
+    <li>{{ WeaponSkin.created_at }}
+    <li>{{ WeaponSkin.user }}
+    <li>{{ WeaponSkin.text }}
+    <li>{{ WeaponSkin.beauty }}
+    <li>{{ WeaponSkin.type }}
+    <li>{{ WeaponSkin.price }}
+    {% if isAdmin == true %}
+        <li>{{  }}</li>
+        <li>{{  }}</li>
+    {% else %}
+        <li>{{  }}</li>
+    {% endblock %}
+</ul>
+
+    <a href="{{ path('weapons_skins_index') }}">back to list</a></li>
+{% endblock %}
