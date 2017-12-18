@@ -29,12 +29,12 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Entity\UserCard:
+    App\Entity\WeaponSkin:
         public: true
 
-    App\Event\UserCardEvent:
+    App\Entity\NoteSkin:
         public: true
 
-    App\EventListener\UserCardSubscriber:
+    App\EventListener\NoteSkinSubscriber:
         arguments:
             $nbMaxUserCard: '%nb_max_usercard%'

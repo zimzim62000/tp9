@@ -3,15 +3,13 @@
 namespace App\Form;
 
 use App\Entity\NoteSkin;
-use App\Entity\UserCard;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\{IntegerType, SubmitType};
-use Symfony\Component\Form\{FormBuilder, FormBuilderInterface, FormEvent, FormEvents};
+use Symfony\Component\Form\{FormBuilderInterface, FormEvent, FormEvents};
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class NoteSkinType extends AbstractType
-{
+class NoteSkinType extends AbstractType {
     protected $token;
     protected $noteSkin;
 

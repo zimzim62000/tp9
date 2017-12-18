@@ -13,6 +13,7 @@ security:
     role_hierarchy:
         ROLE_USER: [ROLE_USER]
         ROLE_ADMIN: [ROLE_ADMIN, ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_SUPER_ADMIN, ROLE_ADMIN, ROLE_USER]
 
     firewalls:
         dev:
@@ -29,7 +30,9 @@ security:
 
     access_control:
         - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/user, roles: ROLE_USER }
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/card, roles: ROLE_USER }
-        - { path: ^/usercard, roles: ROLE_USER }
+        - { path: ^/weapon/skin/, roles: ROLE_USER }
+        - { path: ^/weapon/skin/, roles: ROLE_ADMIN }
+        - { path: ^/weapon/skin/, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/weapon/skin/{id}/show, roles: ROLE_USER }
+        - { path: ^/weapon/skin/{id}/show, roles: ROLE_ADMIN }
+        - { path: ^/weapon/skin/{id}/show, roles: ROLE_SUPER_ADMIN }
