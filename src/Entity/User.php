@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -21,7 +20,6 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", unique=true)
-     * @Assert\NotBlank()
      */
     private $email;
 
@@ -42,9 +40,6 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     * @Assert\Length(min="4", groups={"new"})
-     * @Assert\Length(min="10", groups={"edit"})
      */
     private $password;
 
@@ -62,6 +57,18 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="boolean")
      */
     private $isAdmin = false;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isSuperAdmin = false;
+	
+	/**
+	 * @return mixed
+	 */
+	public function isSuperAdmin(){
+		return $this->isSuperAdmin;
+	}
 
     public function __construct()
     {
@@ -78,7 +85,7 @@ class User implements UserInterface, \Serializable
         return $this->email;
     }
 
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
@@ -88,7 +95,7 @@ class User implements UserInterface, \Serializable
         return $this->firstname;
     }
 
-    public function setFirstname($firstname)
+    public function setFirstname(string $firstname)
     {
         $this->firstname = $firstname;
     }
@@ -98,7 +105,7 @@ class User implements UserInterface, \Serializable
         return $this->lastname;
     }
 
-    public function setLastname($lastname)
+    public function setLastname(string $lastname)
     {
         $this->lastname = $lastname;
     }
@@ -138,7 +145,7 @@ class User implements UserInterface, \Serializable
         $this->updatedAt = $updatedAt;
     }
 
-    public function isAdmin()
+    public function isAdmin() : bool
     {
         return $this->isAdmin;
     }
@@ -146,6 +153,11 @@ class User implements UserInterface, \Serializable
     public function setIsAdmin(bool $isAdmin)
     {
         $this->isAdmin = $isAdmin;
+    }
+
+    public function setIsSuperAdmin(bool $isAdmin)
+    {
+        $this->isSuperAdmin = $isAdmin;
     }
 
     /**
@@ -157,6 +169,9 @@ class User implements UserInterface, \Serializable
 
         if ($this->isAdmin()) {
             $roles[] = 'ROLE_ADMIN';
+        }
+        if($this->isSuperAdmin()){
+        	$roles[] = 'ROLE_SUPER_ADMIN';
         }
 
         return $roles;

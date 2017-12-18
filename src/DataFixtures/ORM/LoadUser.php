@@ -4,15 +4,19 @@ namespace App\DataFixtures\ORM;
 
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadUser extends Fixture
 {
-    const USER_PASSWORD = 'user';
+	const USER_PASSWORD = 'user';
 
     public function load(ObjectManager $manager)
     {
-    	for($i = 1; $i < 4; $i++){
+	    for($i = 1; $i < 4; $i++){
 		
 		    $user = new User();
 		

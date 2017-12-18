@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h2>Liste des skins disponibles</h2>
+    <ul>
+		{% for a_weaponskin in weaponSkins %}
+            <li><a href="{{ path("weapon_show", {"id" : a_weaponskin.id}) }}"> {{ a_weaponskin.updatedAt|date("m/d/Y h:m:s") }} {{ a_weaponskin.name }} {{ a_weaponskin.price }}</a></li>
+		{% endfor %}
+    </ul>
+    <a href="{{ path("skin_add") }}">Ajouter un skin</a>
+{% endblock %}

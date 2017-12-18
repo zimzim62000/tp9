@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h2>{{ weaponSkin.name }}</h2>
+    <h3>Date de création : {{ weaponSkin.createdAt|date("m/d/Y h:m:s") }}</h3>
+    <h3>Derniere modification : {{ weaponSkin.updatedAt|date("m/d/Y h:m:s") }}</h3>
+
+    {#<h3>Auteur : {{ weaponSkin.user.firstname }}</h3>#}
+
+    <p> {{ weaponSkin.text }} {{ weaponSkin.beauty }} {{ weaponSkin.type }}</p>
+
+    <a href="{{ path("weapon_show", {"id" : weaponSkin.id, "order_date" : "true"}) }}">Trier par date</a>
+    <h3>Note Skin </h3>
+    <ul>
+		{% for a_noteSkin in noteSkin %}
+            <li>
+                {{ a_noteSkin.createdAt|date("m-d-Y h:m:s") }} {{ a_noteSkin.note }}
+
+				{% if is_granted('ROLE_ADMIN') %}
+                    <a href=" {{ path("noteskin_edit", {"id" : a_noteSkin.id}) }}">Editer</a>
+                    <a href=" {{ path("noteskin_delete", {"id" : a_noteSkin.id}) }}">Supprimer</a>
+				{% endif %}
+            </li>
+		{% endfor %}
+    </ul>
+
+    <a href=" {{ path("noteskin_add", {"id" : weaponSkin.id}) }}">Ajouter une note</a>
+    <a href=" {{ path("skin_edit", {"id" : weaponSkin.id}) }}">Editer le skin</a>
+{% endblock %}

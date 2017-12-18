@@ -3,23 +3,6 @@
 
 {% block body %}
 
-    <table>
-        <tr>
-            <th>User Action</th>
-            <th>User Owner</th>
-            <th>Card</th>
-            <th>Action</th>
-            <th>Date</th>
-        </tr>
-        {% for a_logusercard in logUserCard %}
-            <tr>
-                <td>{{ a_logusercard.user.firstname }} {{ a_logusercard.user.lastname }}</td>
-                <td>{{ a_logusercard.userOwner.firstname }} {{ a_logusercard.userOwner.lastname }}</td>
-                <td>{{ a_logusercard.card.name }}</td>
-                <td>{{ a_logusercard.action }}</td>
-                <td>{{ a_logusercard.createdAd|date("d/m/Y:h:m:s") }}</td>
-            </tr>
-        {% endfor %}
-    </table>
+    <h2>index admin</h2>
 
 {% endblock %}

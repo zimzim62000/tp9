@@ -23,11 +23,11 @@ class LogUserCard{
 	 */
 	private $action;
 	
-	/**
-	 * @ORM\ManyToOne(targetEntity="User")
-	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-	 */
-	private $user;
+			/**
+			 * @ORM\ManyToOne(targetEntity="User")
+			 * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+			 */
+			private $user;
 	
 	/**
 	 * @ORM\ManyToOne(targetEntity="User")

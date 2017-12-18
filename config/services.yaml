@@ -2,7 +2,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-    max_card: '%env(MAX_CARD)%'
+    my_captcha: '%env(MY_CAPTCHA)%'
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -28,25 +29,22 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Form\UserCardType:
-      public: true
+    App\Entity\NoteSkin:
+        public: true
 
-    App\Entity\UserCard:
-      public: true
+    App\Entity\WeaponSkin:
+        public: true
 
-    App\Entity\User:
-      public: true
+    App\Event\NoteSkinEvent:
+        public: true
 
-    App\Entity\LogUserCard:
-      public: true
+    App\Event\SkinEvent:
+        public: true
 
-    App\Event\UserCardEvent:
-      public: true
+    App\Form\NoteSkinType:
+        public: true
+        arguments: [%my_captcha%]
+        autowire: true
 
-    App\Event\LogUserCardEvent:
-      public: true
-
-    App\Handler\AddUserCardHandler:
-      public: true
-      arguments: [%max_card%]
-
+    App\Form\WeaponSkinType:
+        public: true
