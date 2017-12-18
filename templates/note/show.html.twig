@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <h1>note:</h1>
+    <table>
+        <tr>
+            <th>note</th>
+            <th>auteur</th>
+            <th>date</th>
+        </tr>
+        <tr>
+            <td>{{ weaponskin.name }}</td>
+            <td>{{ weaponskin.user.email }}</td>
+            <td>{{ weaponskin.createdAt|date("Y")}}</td>
+        </tr>
+    </table>
+{% endblock %}
