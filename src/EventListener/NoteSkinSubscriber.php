@@ -12,6 +12,7 @@ namespace App\EventListener;
 use App\AppEvent;
 use App\Event\NoteSkinEvent;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class NoteSkinSubscriber implements EventSubscriberInterface
 {
