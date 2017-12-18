@@ -40,7 +40,7 @@ class LoadNoteSkin extends Fixture implements DependentFixtureInterface
         $note->setCreatedAt(new \DateTime());
         $note->setNote(15.1);
         $note->setUser($this->getReference('user3'));
-        $note->setSkin($this->getReference('skin5'));
+        $note->setSkin($this->getReference('skin2'));
 
         $this->addReference('note2', $note);
 

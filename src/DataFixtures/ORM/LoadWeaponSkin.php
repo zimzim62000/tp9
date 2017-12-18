@@ -26,7 +26,7 @@ class LoadWeaponSkin extends Fixture implements DependentFixtureInterface
         $skin->setText("Best piou of the game");
         $skin->setType("pistol");
         $skin->setCreatedAt(new \DateTime());
-        $skin->setUpdateAt(new \DateTime());
+        $skin->setUpdatedAt(new \DateTime());
         $skin->setUser($this->getReference('user1'));
 
         $this->addReference('skin1', $skin);
@@ -40,7 +40,7 @@ class LoadWeaponSkin extends Fixture implements DependentFixtureInterface
         $skin->setText(null);
         $skin->setType("rifle");
         $skin->setCreatedAt(new \DateTime());
-        $skin->setUpdateAt(new \DateTime());
+        $skin->setUpdatedAt(new \DateTime());
         $skin->setUser($this->getReference('user1'));
 
         $this->addReference('skin2', $skin);
@@ -54,7 +54,7 @@ class LoadWeaponSkin extends Fixture implements DependentFixtureInterface
         $skin->setText(null);
         $skin->setType("knife");
         $skin->setCreatedAt(new \DateTime());
-        $skin->setUpdateAt(new \DateTime());
+        $skin->setUpdatedAt(new \DateTime());
         $skin->setUser($this->getReference('user2'));
 
         $this->addReference('skin3', $skin);
@@ -68,7 +68,7 @@ class LoadWeaponSkin extends Fixture implements DependentFixtureInterface
         $skin->setText("test");
         $skin->setType("knife");
         $skin->setCreatedAt(new \DateTime());
-        $skin->setUpdateAt(new \DateTime());
+        $skin->setUpdatedAt(new \DateTime());
         $skin->setUser($this->getReference('user3'));
 
         $this->addReference('skin4', $skin);
@@ -82,7 +82,7 @@ class LoadWeaponSkin extends Fixture implements DependentFixtureInterface
         $skin->setText(null);
         $skin->setType("sniper");
         $skin->setCreatedAt(new \DateTime());
-        $skin->setUpdateAt(new \DateTime());
+        $skin->setUpdatedAt(new \DateTime());
         $skin->setUser($this->getReference('user3'));
 
         $this->addReference('skin5', $skin);

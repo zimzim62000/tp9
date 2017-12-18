@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h2>show Skin</h2>
+
+    <ul>
+        <li>{{ skin.name }}</li>
+        <li>{{ skin.createdAt|date }}</li>
+        <li>{{ skin.user.email }}</li>
+        <li>{{ skin.text }}</li>
+        <li>{{ skin.beauty }}</li>
+        <li>{{ skin.type }}</li>
+        <li>{{ skin.price }}</li>
+    </ul>
+
+    <ul>
+        {% for note in notes %}
+            <li> {{ note.note }}</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{{ path('skin_index') }}">back to list</a></p>
+{% endblock %}

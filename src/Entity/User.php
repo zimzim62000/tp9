@@ -21,6 +21,11 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string")
      */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     private $password;
 
     /**
@@ -55,6 +60,24 @@ class User implements UserInterface
         $this->password = $password;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+
+
     public function getRoles()
     {
         // TODO: Implement getRoles() method.
@@ -67,7 +90,7 @@ class User implements UserInterface
 
     public function getUsername()
     {
-        // TODO: Implement getUsername() method.
+        return $this->email;
     }
 
     public function eraseCredentials()

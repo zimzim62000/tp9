@@ -16,6 +16,7 @@ class LoadAdmin extends Fixture
 
         $password = $this->container->get('security.password_encoder')->encodePassword($admin, self::ADMIN_PASSWORD);
         $admin->setPassword($password);
+        $admin->setEmail('admin@admin.fr');
 
         $this->addReference('admin', $admin);
 

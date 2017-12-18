@@ -39,7 +39,7 @@ class WeaponSkin
     /**
      * @ORM\Column(type="datetime")
      */
-    private $update_at;
+    private $updated_at;
     /**
      * @ORM\Column(type="string")
      */
@@ -92,9 +92,9 @@ class WeaponSkin
     /**
      * @return mixed
      */
-    public function getUpdateAt()
+    public function getUpdatedAt()
     {
-        return $this->update_at;
+        return $this->updated_at;
     }
 
     /**
@@ -162,11 +162,11 @@ class WeaponSkin
     }
 
     /**
-     * @param mixed $update_at
+     * @param mixed $updated_at
      */
-    public function setUpdateAt($update_at)
+    public function setUpdatedAt($updated_at)
     {
-        $this->update_at = $update_at;
+        $this->updated_at = $updated_at;
     }
 
     /**

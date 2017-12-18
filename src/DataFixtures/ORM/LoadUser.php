@@ -18,6 +18,7 @@ class LoadUser extends Fixture
 
         $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD1);
         $user->setPassword($password);
+        $user->setEmail("user1@user.fr");
 
         $this->addReference('user1', $user);
 
@@ -27,6 +28,7 @@ class LoadUser extends Fixture
 
         $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD2);
         $user->setPassword($password);
+        $user->setEmail("user2@user.fr");
 
         $this->addReference('user2', $user);
 
@@ -36,6 +38,7 @@ class LoadUser extends Fixture
 
         $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD3);
         $user->setPassword($password);
+        $user->setEmail("user3@user.fr");
 
         $this->addReference('user3', $user);
 
