@@ -54,9 +54,9 @@ class NoteSkinVoter extends Voter
 
         switch($attribute){
             case self::EDIT:
-                return $noteSkin->getUser()->getId() === $user->getId();
+                return false;
             case self::DELETE:
-                return $noteSkin->getUser()->getId() === $user->getId();
+                return false;
             case self::SHOW:
                 return $noteSkin->getUser()->getId() === $user->getId();
             default:

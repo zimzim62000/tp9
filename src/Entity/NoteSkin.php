@@ -31,6 +31,7 @@ class NoteSkin
     /**
      * @var float
      * @ORM\Column(type="decimal")
+     * @Assert\Range(min=0, max=20)
      */
     private $note;
 

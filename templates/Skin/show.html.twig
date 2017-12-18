@@ -11,9 +11,9 @@
         <div>
             {% for note in notes %}
 
-                <span>{{ note.note }}</span> - <a href="{{ path('editer_note', {id: note.id}) }}"><button>Editer</button></a>
-
+                <span>{{ note.note }}</span> -
                 {% if app.user.isAdmin %}
+                    <a href="{{ path('editer_note', {id: note.id}) }}"><button>Editer</button></a>
                     <a href="{{ path('supprimer_note', {id: note.id}) }}"><button>Supprimer</button></a>
                 {% endif %}
 

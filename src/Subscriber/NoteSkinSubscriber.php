@@ -19,6 +19,9 @@ class NoteSkinSubscriber implements EventSubscriberInterface
         );
     }
     public function skinNoteAdd(SkinNoteEvent $skinNoteEvent){
+
+        mail('admin@admin.fr',"Ajout d'une note","Une note viens d'etre ajouter !");
+
         $skinNoteEvent = $skinNoteEvent->getSkinnote();
         $this->manager->persist($skinNoteEvent);
         $this->manager->flush();
