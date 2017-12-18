@@ -1,4 +1,5 @@
 {% extends "base.html.twig" %}
+{% import "macro.html.twig" as macro %}
 
 {% block body %}
     <h1>{{ skin.name }}</h1>
@@ -19,9 +20,9 @@
     <ul>
         {% for note in notes %}
             {% if is_granted('ROLE_ADMIN') %}
-                <li>{{ note.note }} de {{ note.user.firstName }} - <a href="{{ path('edit_note', {id: note.id}) }}">Editer</a> - <a href="{{ path('del_note', {id: note.id}) }}">Supprimer</a></li>
+                <li>{{ macro.note(note.note) }} de {{ note.user.firstName }} - <a href="{{ path('edit_note', {id: note.id}) }}">Editer</a> - <a href="{{ path('del_note', {id: note.id}) }}">Supprimer</a></li>
             {% else %}
-                <li>{{ note.note }} de {{ note.user.firstName }}</li>
+                <li>{{ macro.note(note.note) }} de {{ note.user.firstName }}</li>
             {% endif %}
         {% endfor %}
     </ul>

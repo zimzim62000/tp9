@@ -9,8 +9,10 @@
 namespace App\Controller;
 
 
+use App\AppEvent;
 use App\Entity\NoteSkin;
 use App\Entity\WeaponSkin;
+use App\Event\NoteSkinEvent;
 use App\Form\NoteSkinType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,13 +32,14 @@ class NoteSkinController extends Controller
         $skin = $em->getRepository(WeaponSkin::class)->find($id);
         $note->setSkin($skin);
         $note->setUser($this->getUser());
-        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(NoteSkinType::class, $note);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $em->persist($note);
-            $em->flush();
+            $noteSkinEvent = $this->get(NoteSkinEvent::class);
+            $noteSkinEvent->setNoteSkin($note);
+            $dispatcher = $this->get('event_dispatcher');
+            $dispatcher->dispatch(AppEvent::NOTESKIN_ADD, $noteSkinEvent);
             return $this->redirectToRoute("show_skin", ["id" => $id]);
         }
         return $this->render("NoteSkin/new.html.twig", array("form"=>$form->createView()));
@@ -51,13 +54,14 @@ class NoteSkinController extends Controller
     public function editNote(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $note = $em->getRepository(NoteSkin::class)->find($id);
-        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(NoteSkinType::class, $note);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $em->persist($note);
-            $em->flush();
+            $noteSkinEvent = $this->get(NoteSkinEvent::class);
+            $noteSkinEvent->setNoteSkin($note);
+            $dispatcher = $this->get('event_dispatcher');
+            $dispatcher->dispatch(AppEvent::NOTESKIN_EDIT, $noteSkinEvent);
             return $this->redirectToRoute("show_skin", ["id" => $note->getSkin()->getId()]);
         }
         return $this->render("NoteSkin/edit.html.twig", array("form"=>$form->createView()));
@@ -70,9 +74,10 @@ class NoteSkinController extends Controller
      * )
      */
     public function delNote(NoteSkin $note){
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($note);
-        $em->flush();
+        $noteSkinEvent = $this->get(NoteSkinEvent::class);
+        $noteSkinEvent->setNoteSkin($note);
+        $dispatcher = $this->get('event_dispatcher');
+        $dispatcher->dispatch(AppEvent::NOTESKIN_REMOVE, $noteSkinEvent);
         return $this->redirectToRoute("show_skin", array("id"=>$note->getSkin()->getId()));
     }
 }

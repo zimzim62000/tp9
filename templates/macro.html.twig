@@ -1,0 +1,14 @@
+{% macro note(note) %}
+    {% if  note  < 8 and note > 0 %}
+        <span style="color: red">{{ note }}</span>
+    {% endif %}
+    {% if note < 12 and note > 8%}
+        <span style="color: orange">{{ note }}</span>
+    {% endif %}
+    {% if note < 16 and note > 12 %}
+        <span style="color: yellow">{{ note }}</span>
+    {% endif %}
+    {% if note < 20 and note > 16%}
+        <span style="color: green">{{ note }}</span>
+    {% endif %}
+{% endmacro %}
