@@ -73,7 +73,7 @@ class NoteSkinController extends Controller
     }
 
     /**
-     * @Route(path="/{id}/delete", name="app_note_delete")
+     * @Route(path="/delete/{id}", name="app_note_delete")
      *
      */
     public function deleteAction(NoteSkin $noteSkin, AuthorizationCheckerInterface $authorizationChecker)

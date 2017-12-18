@@ -28,6 +28,7 @@ class WeaponSkinController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $skins = $em->getRepository(WeaponSkin::class)->findAll();
+
         return $this->render('WeaponSkin/index.html.twig', ['skins' => $skins]);
     }
 
@@ -39,7 +40,9 @@ class WeaponSkinController extends Controller
      */
     public function showAction(WeaponSkin $weaponSkin)
     {
-        return $this->render('WeaponSkin/show.html.twig', ['weaponSkin' => $weaponSkin]);
+        $em = $this->getDoctrine()->getManager();
+        $notes = $em->getRepository(NoteSkin::class)->findBy(array("skin"=>$weaponSkin));
+        return $this->render('WeaponSkin/show.html.twig', ['weaponSkin' => $weaponSkin,'notes'=>$notes]);
     }
 
 }

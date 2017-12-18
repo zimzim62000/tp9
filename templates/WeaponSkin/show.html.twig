@@ -8,8 +8,16 @@
     <ul>
         <li>{{ weaponSkin.name }} - {{ weaponSkin.createdAt |date("d/m/Y")}}- {{ weaponSkin.user.email }}- {{ weaponSkin.text }}
         - {{ weaponSkin.type }} - {{ weaponSkin.beauty }} - {{ weaponSkin.price }}
-
+            {% if app.user.isAdmin==false  %}
             <a href="{{ path('app_note_new', {'id': weaponSkin.id}) }}">new</a>
+            {% endif %}
+
+            {% for note in notes %}
+            {% if app.user.isAdmin %}
+                <a href="{{ path('app_note_edit', {'id': note.id}) }}">edit</a>
+                <a href="{{ path('app_note_delete', {'id': note.id}) }}">delete</a>
+            {% endif %}
+            {% endfor %}
     </ul>
 
 {% endblock %}
