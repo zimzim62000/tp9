@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -23,20 +24,6 @@ class User implements UserInterface, \Serializable
      */
     private $email;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $firstname;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $lastname;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $birthday;
 
     /**
      * @ORM\Column(type="string")
@@ -63,82 +50,52 @@ class User implements UserInterface, \Serializable
         $this->createdAt = $this->updatedAt = new \DateTime();
     }
 
-    public function getId() : ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getEmail() : ?string
+    public function getEmail()
     {
         return $this->email;
     }
 
-    public function setEmail(?string $email) : void
+    public function setEmail(?string $email)
     {
         $this->email = $email;
     }
 
-    public function getFirstname() : ?string
-    {
-        return $this->firstname;
-    }
-
-    public function setFirstname(?string $firstname) : void
-    {
-        $this->firstname = $firstname;
-    }
-
-    public function getLastname() : ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(?string $lastname) : void
-    {
-        $this->lastname = $lastname;
-    }
-
-    public function getBirthday() : ?\DateTime
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(\DateTime $birthday) : void
-    {
-        $this->birthday = $birthday;
-    }
-
-    public function getPassword() : ?string
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword(?string $password) : void
+    public function setPassword(?string $password)
     {
         $this->password = $password;
     }
 
-    public function getCreatedAt() : \DateTime
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt() : \DateTime
+    public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt) : void
+    public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
     }
 
-    public function isAdmin() : bool
+    public function isAdmin()
     {
         return $this->isAdmin;
     }
 
-    public function setIsAdmin(bool $isAdmin) : void
+    public function setIsAdmin(bool $isAdmin)
     {
         $this->isAdmin = $isAdmin;
     }
@@ -187,8 +144,6 @@ class User implements UserInterface, \Serializable
         return serialize([
             $this->id,
             $this->email,
-            $this->firstname,
-            $this->lastname,
             $this->isAdmin,
             $this->password,
         ]);
@@ -202,8 +157,6 @@ class User implements UserInterface, \Serializable
         list(
             $this->id,
             $this->email,
-            $this->firstname,
-            $this->lastname,
             $this->isAdmin,
             $this->password) = unserialize($serialized);
     }
