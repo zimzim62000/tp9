@@ -19,7 +19,7 @@
         <li>
         {{ note.note }}
         </li>
-            {% if app.user.admin %}
+            {% if app.user.admin == true %}
                 <a href="{{ path("app_weaponskin_edit") }}">edit</a>
                 <a href="{{ path("app_weaponskin_delete") }}">delete</a>
             {% endif %}
