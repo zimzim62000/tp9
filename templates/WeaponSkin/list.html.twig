@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <ul>
+    {% for skin in skins %}
+        <li>{{ skin.name }} - {{ skin.price }}€ - appartient à {{ skin.user.firstName }} - <a href="{{ path("show_skin", {id:skin.id}) }}">Plus</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}
