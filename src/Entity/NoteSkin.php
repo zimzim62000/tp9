@@ -28,6 +28,12 @@ class NoteSkin
      * @var float
      * @ORM\Column(type="decimal", scale=2)
      * @Assert\NotBlank()
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 20,
+     *      minMessage = "0 est le minimum",
+     *      maxMessage = "20 est le maximum"
+     * )
      */
     protected $note;
     /**

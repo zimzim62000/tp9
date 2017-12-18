@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\WeaponSkinRepository")
  * @ORM\Table(name="tp_weaponSkin")
  */
 class WeaponSkin
@@ -64,7 +65,7 @@ class WeaponSkin
     protected $price;
     /**
      * @var User
-     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     protected $user;
 
