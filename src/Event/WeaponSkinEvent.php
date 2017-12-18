@@ -12,29 +12,10 @@ use Symfony\Component\EventDispatcher\Event;
 
 
 
-class NoteSkinEvent extends Event
+class WeaponSkinEvent extends Event
 {
     private $user;
     private $weaponSkin;
-    private $note;
-
-    /**
-     * @return mixed
-     */
-    public function getNote()
-    {
-        return $this->note;
-    }
-
-    /**
-     * @param mixed $note
-     */
-    public function setNote($note)
-    {
-        $this->note = $note;
-    }
-
-
 
     /**
      * @return mixed
@@ -67,6 +48,7 @@ class NoteSkinEvent extends Event
     {
         $this->weaponSkin = $weaponSkin;
     }
+
 
 
 }

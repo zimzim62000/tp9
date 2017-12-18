@@ -2,6 +2,7 @@
 
 namespace App\EventListener;
 
+use App\Entity\User;
 use App\NoteSkinEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -51,6 +52,13 @@ class NoteSkinSubscriber implements EventSubscriberInterface
         $noteSkin->setUser($user);
         $noteSkin->setWeaponSkin($weaponSkin);
         $noteSkin->setNote($note);
+
+        $mailAdmins = $this->em->getRepository(User::class)->findBy(['admin' => true]);
+
+        foreach ($mailAdmins as $mailAdmin){
+            \Monolog\Handler\mail($mailAdmin,"Creation new note", "Ajout d'une note sur un skin");
+        }
+
 
         $this->em->persist($noteSkin);
 

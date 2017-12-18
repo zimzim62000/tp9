@@ -19,8 +19,10 @@
         <li>
         {{ note.note }}
         </li>
-
-
+            {% if app.user.admin %}
+                <a href="{{ path("app_weaponskin_edit") }}">edit</a>
+                <a href="{{ path("app_weaponskin_delete") }}">delete</a>
+            {% endif %}
     {% endfor %}
         <a href="{{ path('app_noteskin_new',{ 'skin' : skin})}}">Noter</a>
     </ul>
