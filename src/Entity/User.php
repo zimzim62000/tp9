@@ -26,122 +26,19 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string")
      */
-    private $firstname;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $lastname;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $birthday;
-
-    /**
-     * @ORM\Column(type="string")
-     */
     private $password;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
 
     /**
      * @ORM\Column(type="boolean")
      */
     private $isAdmin = false;
 
-    public function __construct()
-    {
-        $this->createdAt = $this->updatedAt = new \DateTime();
-    }
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isSuperAdmin = false;
 
-    public function getId() : ?int
-    {
-        return $this->id;
-    }
 
-    public function getEmail() : ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(?string $email) : void
-    {
-        $this->email = $email;
-    }
-
-    public function getFirstname() : ?string
-    {
-        return $this->firstname;
-    }
-
-    public function setFirstname(?string $firstname) : void
-    {
-        $this->firstname = $firstname;
-    }
-
-    public function getLastname() : ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(?string $lastname) : void
-    {
-        $this->lastname = $lastname;
-    }
-
-    public function getBirthday() : ?\DateTime
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(\DateTime $birthday) : void
-    {
-        $this->birthday = $birthday;
-    }
-
-    public function getPassword() : ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(?string $password) : void
-    {
-        $this->password = $password;
-    }
-
-    public function getCreatedAt() : \DateTime
-    {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt() : \DateTime
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTime $updatedAt) : void
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    public function isAdmin() : bool
-    {
-        return $this->isAdmin;
-    }
-
-    public function setIsAdmin(bool $isAdmin) : void
-    {
-        $this->isAdmin = $isAdmin;
-    }
 
     /**
      * {@inheritdoc}
@@ -154,8 +51,21 @@ class User implements UserInterface, \Serializable
             $roles[] = 'ROLE_ADMIN';
         }
 
+        if ($this->isSuperAdmin()) {
+            $roles[] = 'ROLE_ADMIN';
+        }
+
         return $roles;
     }
+
+    /**
+     * @return mixed
+     */
+    public function isSuperAdmin()
+    {
+        return $this->isSuperAdmin;
+    }
+
 
     /**
      * {@inheritdoc}
@@ -187,8 +97,6 @@ class User implements UserInterface, \Serializable
         return serialize([
             $this->id,
             $this->email,
-            $this->firstname,
-            $this->lastname,
             $this->isAdmin,
             $this->password,
         ]);
@@ -202,9 +110,78 @@ class User implements UserInterface, \Serializable
         list(
             $this->id,
             $this->email,
-            $this->firstname,
-            $this->lastname,
             $this->isAdmin,
             $this->password) = unserialize($serialized);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isAdmin()
+    {
+        return $this->isAdmin;
+    }
+
+    /**
+     * @param mixed $isAdmin
+     */
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
+    }
+
+    function __toString()
+    {
+        return $this->email;
+    }
+
+
 }

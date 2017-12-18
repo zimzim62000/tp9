@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h2>index Skin</h2>
+
+    <ul>
+        <a href="{{ path('superskin_add') }}">Ajouter un skin</a>
+        {% for skin in skins %}
+
+            <li>
+                {{ skin.name }}
+                {{ skin.price }}
+                {{ skin.user.email }}
+                <a href="{{ path('superskin_edit', {'id': skin.id}) }}">Modifier</a>
+
+            </li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

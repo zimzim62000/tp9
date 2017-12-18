@@ -1,0 +1,11 @@
+{% macro skin(skin) %}
+    <div class="skin">
+        {{ skin.name }}
+        {{ skin.createdAt|date }}
+        {{ skin.user.email }}
+        {{ skin.text }}
+        {{ skin.beauty }}
+        {{ skin.type }}
+        {{ skin.price }}
+    </div>
+{% endmacro %}
