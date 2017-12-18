@@ -27,13 +27,7 @@ class WeaponSkinController extends Controller
      */
     public function indexdAction(AuthorizationCheckerInterface $authorizationChecker)
     {
-        if($authorizationChecker->isGranted('ROLE_ADMIN')) {
-
-            $weapons = $this->getDoctrine()->getManager()->getRepository(WeaponSkin::class)->findAll();
-        }
-        else{
-            $weapons = $this->getDoctrine()->getManager()->getRepository(WeaponSkin::class)->findBy(["user" => $this->getUser()]);
-        }
+        $weapons = $this->getDoctrine()->getManager()->getRepository(WeaponSkin::class)->findAll();
         return $this->render('Weapon/index.html.twig', ["weapons" => $weapons]);
     }
 

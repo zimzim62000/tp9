@@ -24,8 +24,8 @@ class LoadWeaponSkin extends Fixture
         $skin->setBeauty("common");
         $skin->setType("rifle");
         $skin->setPrice(2.2);
-        $skin->setCreatedAt(new \DateTime('2000/01/01'));
-        $skin->setUpdatedAt(new \DateTime('2000/01/01'));
+        $skin->setCreatedAt(new DateTime('now'));
+        $skin->setUpdatedAt(new DateTime('now'));
         $skin->setUser($this->getReference('user'));
 
         $this->addReference('skin', $skin);
@@ -39,8 +39,8 @@ class LoadWeaponSkin extends Fixture
         $skin->setBeauty("rare");
         $skin->setType("pistol");
         $skin->setPrice(5.2);
-        $skin->setCreatedAt(new \DateTime('2000/01/01'));
-        $skin->setUpdatedAt(new \DateTime('2000/01/01'));
+        $skin->setCreatedAt(new DateTime('now'));
+        $skin->setUpdatedAt(new DateTime('now'));
         $skin->setUser($this->getReference('user1'));
 
         $this->addReference('skin2', $skin);
@@ -54,8 +54,8 @@ class LoadWeaponSkin extends Fixture
         $skin->setBeauty("épik");
         $skin->setType("knife");
         $skin->setPrice(10.3);
-        $skin->setCreatedAt(new \DateTime('2000/01/01'));
-        $skin->setUpdatedAt(new \DateTime('2000/01/01'));
+        $skin->setCreatedAt(new DateTime('now'));
+        $skin->setUpdatedAt(new DateTime('now'));
         $skin->setUser($this->getReference('user2'));
 
         $this->addReference('skin3', $skin);
@@ -69,8 +69,8 @@ class LoadWeaponSkin extends Fixture
         $skin->setBeauty("légendary");
         $skin->setType("sniper");
         $skin->setPrice(20.5);
-        $skin->setCreatedAt(new \DateTime('2000/01/01'));
-        $skin->setUpdatedAt(new \DateTime('2000/01/01'));
+        $skin->setCreatedAt(new DateTime('now'));
+        $skin->setUpdatedAt(new DateTime('now'));
         $skin->setUser($this->getReference('user2'));
 
         $this->addReference('skin4', $skin);
@@ -84,8 +84,8 @@ class LoadWeaponSkin extends Fixture
         $skin->setBeauty("common");
         $skin->setType("rifle");
         $skin->setPrice(3.2);
-        $skin->setCreatedAt(new \DateTime('2000/01/01'));
-        $skin->setUpdatedAt(new \DateTime('2000/01/01'));
+        $skin->setCreatedAt(new DateTime('now'));
+        $skin->setUpdatedAt(new DateTime('now'));
         $skin->setUser($this->getReference('user'));
 
         $this->addReference('skin5', $skin);

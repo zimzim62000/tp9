@@ -34,10 +34,12 @@
             {% endif %}
 
             </br>
-            {% if note.user.email != app.user.email %}
-
+            {% if is_granted('ROLE_ADMIN') == true %}
+                <a href="{{  path('noteskin_new', {'id': note.skin.id}) }}" >Modifier la note</a>
+                <a href="{{  path('noteskin_delete', {'id': note.skin.id}) }}" >Supprimer la note</a>
+            {% elseif note.user.email != app.user.email %}
+                <a href="{{  path('noteskin_new', {'id': note.skin.id}) }}" >Ajouter une note à ce skin</a>
             {% endif %}
-
 
             </br>
         {%  endfor %}

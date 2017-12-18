@@ -19,7 +19,7 @@ class LoadNoteSkin extends Fixture
         $note = new NoteSkin();
 
         $note->setNote(5);
-        $note->setCreatedAt(new \DateTime('2000/01/01'));
+        $note->setCreatedAt(new DateTime('now'));
         $note->setUser($this->getReference('user1'));
         $note->setSkin($this->getReference('skin2'));
         $this->addReference('note', $note);
@@ -29,7 +29,7 @@ class LoadNoteSkin extends Fixture
         $note = new NoteSkin();
 
         $note->setNote(10);
-        $note->setCreatedAt(new \DateTime('2000/01/01'));
+        $note->setCreatedAt(new DateTime('now'));
         $note->setUser($this->getReference('user'));
         $note->setSkin($this->getReference('skin'));
         $this->addReference('note1', $note);

@@ -29,6 +29,10 @@ class NoteSkin
 
     /**
      * @ORM\Column(type="decimal", scale=2)
+     * @Assert\Range(
+     *      min = "0",
+     *      max = "20"
+     * )
      */
     private $note;
 
@@ -111,5 +115,13 @@ class NoteSkin
     public function setSkin($skin)
     {
         $this->skin = $skin;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
