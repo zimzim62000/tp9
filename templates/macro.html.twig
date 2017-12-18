@@ -1,0 +1,11 @@
+{% macro weaponskin(weaponskin) %}
+    <div class="weaponskin">
+        <h2>{{ weaponskin.name }}</h2>
+        <h3>Beauty : <small>{{ weaponskin.beauty }}</small> ---- Type : <small>{{ weaponskin.type }}</small></h3>
+        <h4>price : <small>{{ weaponskin.price}}</small></h4>
+        <h5>Action :
+            <a href="{{ path('edit_WeaponSkin"', {'id': weaponskin.id}) }}">Edit</a> ----
+            <a href="{{ path('delete_WeaponSkin', {'id': weaponskin.id}) }}">Delete</a>
+        </h5>
+    </div>
+{% endmacro %}

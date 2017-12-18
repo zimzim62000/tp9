@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+    <h2>index user</h2>
+    <ul>
+        {% for WeaponSkin in WeaponSkin %}
+            <li>
+
+                {{ WeaponSkin.name }} --- {{ WeaponSkin.beauty }} --- {{ WeaponSkin.type }} --- {{ WeaponSkin.price }}
+
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
