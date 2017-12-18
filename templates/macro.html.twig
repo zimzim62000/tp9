@@ -1,0 +1,13 @@
+{% macro colore(note) %}
+    <p style = "color:
+    {% if note < 8 %}
+            red
+    {% elseif note < 12 %}
+            orange
+    {% elseif note < 16 %}
+            yellow
+    {% elseif note < 20 %}
+            green
+    {% endif %}
+            ;"></p>
+{% endmacro colore %}

@@ -1,20 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% macro colore(note) %}
-    <p style = "color:
-    {% if note < 8 %}
-            red
-    {% elseif note < 12 %}
-            orange
-    {% elseif note < 16 %}
-            yellow
-    {% elseif note < 20 %}
-            green
-    {% endif %}
-            ;"></p>
-{% endmacro colore %}
-
-
 {% block body %}
 
     <h2>show Skin : {{ skin.name }}</h2>
@@ -41,7 +26,7 @@
     </ul>
 
     {% if not is_granted('ROLE_ADMIN') and noteByUser is empty %}
-        <!--<a href = "">AJOUTER UNE NOTE</a>-->
+        <a href = "">AJOUTER UNE NOTE</a>
     {% endif %}
 
     <a href="{{ path('app_skin_index') }}">back to list</a></li>
