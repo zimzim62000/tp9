@@ -32,3 +32,4 @@ security:
         - { path: ^/logout$, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_USER }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/skin, roles: ROLE_USER }

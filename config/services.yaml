@@ -28,12 +28,17 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Entity\UserCard:
+    App\Entity\User:
         public: true
 
-    App\Subscriber\UserCardSubscriber:
-        arguments: [ '@doctrine.orm.entity_manager']
+    App\Entity\WeaponSkin:
+        public: true
 
-    app.UserCard.event:
-        class: App\Event\UserCardEvent
+    App\Entity\NoteSkin:
+        public: true
+
+    App\Event\NoteSkinEvent:
+        public: true
+
+    App\EventListener\UserCardSubscriber:
         public: true

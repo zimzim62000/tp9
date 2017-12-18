@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h2>show weapon</h2>
+
+    <ul>
+        <li>{{ weaponSkin.name }} - {{ weaponSkin.createdAt |date("d/m/Y")}}- {{ weaponSkin.user.email }}- {{ weaponSkin.text }}
+        - {{ weaponSkin.type }} - {{ weaponSkin.beauty }} - {{ weaponSkin.price }}
+
+            <a href="{{ path(, 'app_note_new') }}">new</a>
+    </ul>
+
+{% endblock %}
