@@ -50,52 +50,52 @@ class User implements UserInterface, \Serializable
         $this->createdAt = $this->updatedAt = new \DateTime();
     }
 
-    public function getId() : ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getEmail() : ?string
+    public function getEmail()
     {
         return $this->email;
     }
 
-    public function setEmail(?string $email) : void
+    public function setEmail(?string $email)
     {
         $this->email = $email;
     }
 
-    public function getPassword() : ?string
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword(?string $password) : void
+    public function setPassword(?string $password)
     {
         $this->password = $password;
     }
 
-    public function getCreatedAt() : \DateTime
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt() : \DateTime
+    public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt) : void
+    public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
     }
 
-    public function isAdmin() : bool
+    public function isAdmin()
     {
         return $this->isAdmin;
     }
 
-    public function setIsAdmin(bool $isAdmin) : void
+    public function setIsAdmin(bool $isAdmin)
     {
         $this->isAdmin = $isAdmin;
     }
