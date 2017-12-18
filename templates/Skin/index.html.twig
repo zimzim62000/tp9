@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}Index skin{% endblock %}
+
+{% block body %}
+    <h1>Index skin</h1>
+    <br/>
+    {# <h2><a href="{{ path('skin_new')}}">Créer un skin</a></h2> #}
+    <br/>
+
+    <ul>
+        {% for skin in skins|sort %}
+            <li> {{ skin.name }} , {{ skin.price }} - created by {{ skin.user }} <a href="{{ path('skin_view', {id: skin.id}) }}">Voir plus...</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% macro note(value) %}
+    {% if  value  < 8 and value > 0 %}
+        <p style="color: red">{{ value }}</p>
+    {% endif %}
+    {% if value < 12 and value > 8%}
+        <p style="color: orange">{{ value }}</p>
+    {% endif %}
+    {% if value < 16 and value > 12 %}
+        <p style="color: yellow">{{ value }}</p>
+    {% endif %}
+    {% if value < 20 and value > 16%}
+        <p style="color: green">{{ value }}</p>
+    {% endif %}
+{% endmacro %}
