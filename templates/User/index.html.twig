@@ -5,16 +5,4 @@
 
     <h2>index user</h2>
 
-    {% for card in cards %}
-        {% if is_granted('app_usercard_show', card) == true %}
-        {{ card.card.name }}
-        {{ card.actionPoint }}
-        {{ card.attack }}
-        {{ card.defence }}
-        <a href="{{ path('usercard_edit', {'id': card.id}) }}">Edit</a>
-        <a href="{{ path('usercard_remove', {'id': card.id})}}">Remove</a>
-        </br>
-        {% endif %}
-    {% endfor %}
-
 {% endblock %}

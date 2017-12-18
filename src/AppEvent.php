@@ -1,17 +1,16 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: antoine.lefevre
- * Date: 11/12/17
- * Time: 14:35
+ * User: jeremyclerot
+ * Date: 18/12/2017
+ * Time: 16:00
  */
 
 namespace App;
 
-
-final class AppEvent
+class AppEvent
 {
-    const USERCARD_ADD = 'app.usercard.add';
-    const USERCARD_EDIT = 'app.usercard.edit';
-    const USERCARD_REMOVE = 'app.usercard.remove';
+    const NOTE_SKIN_ADD    = "note_skin_add";
+    const NOTE_SKIN_EDIT   = "note_skin_edit";
+    const NOTE_SKIN_DELETE = "note_skin_delete";
 }

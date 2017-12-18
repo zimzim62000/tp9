@@ -26,34 +26,33 @@ class LoadUser extends Fixture
 
         $manager->persist($user);
 
-        $user2 = new User();
+        $user = new User();
 
-        $user2->setFirstname('User2');
-        $user2->setLastname('User2');
-        $user2->setEmail('user2@user.fr');
-        $user2->setBirthday(new \DateTime('2000/01/01'));
+        $user->setFirstname('User1');
+        $user->setLastname('User1');
+        $user->setEmail('user1@user.fr');
+        $user->setBirthday(new \DateTime('2000/01/01'));
 
-        $password = $this->container->get('security.password_encoder')->encodePassword($user2, self::USER_PASSWORD);
-        $user2->setPassword($password);
+        $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD);
+        $user->setPassword($password);
 
-        $this->addReference('user2', $user2);
+        $this->addReference('user1', $user);
 
-        $manager->persist($user2);
+        $manager->persist($user);
 
-        $user3 = new User();
+        $user = new User();
 
-        $user3->setFirstname('User3');
-        $user3->setLastname('User3');
-        $user3->setEmail('user3@user.fr');
-        $user3->setBirthday(new \DateTime('2000/01/01'));
+        $user->setFirstname('User2');
+        $user->setLastname('User2');
+        $user->setEmail('user2@user.fr');
+        $user->setBirthday(new \DateTime('2000/01/01'));
 
-        $password = $this->container->get('security.password_encoder')->encodePassword($user3, self::USER_PASSWORD);
-        $user3->setPassword($password);
+        $password = $this->container->get('security.password_encoder')->encodePassword($user, self::USER_PASSWORD);
+        $user->setPassword($password);
 
-        $this->addReference('user3', $user3);
+        $this->addReference('user2', $user);
 
-        $manager->persist($user3);
-
+        $manager->persist($user);
         $manager->flush();
     }
 }

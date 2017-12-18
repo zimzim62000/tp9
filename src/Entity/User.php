@@ -207,11 +207,4 @@ class User implements UserInterface, \Serializable
             $this->isAdmin,
             $this->password) = unserialize($serialized);
     }
-
-    function __toString()
-    {
-        return $this->getFirstname()." ".$this->getLastname();
-    }
-
-
 }

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h2>index weapon</h2>
+    <ul>
+        {% for weapon in weapons %}
+            <li>
+                name: {{ weapon.name }}
+                price: {{ weapon.price }}
+                auteur: {{ weapon.user.email }}
+                <a href="{{ path('app_weapon_show', {'id': weapon.id}) }}">Show</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

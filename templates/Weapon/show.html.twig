@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{%  import "macro.html.twig" as macro %}
+
+{% block body %}
+
+    <h2>index WeaponSkin</h2>
+
+    <ul>
+        {{ macro.weapons(weapons) }}
+    </ul>
+
+    <ul>
+        {% for note in notes %}
+
+            {% if note.note < 8 %}
+                <p style="color: red;">{{ note.note }}</p>
+                {{ note.user.email }}
+            {% endif %}
+
+            {% if note.note >= 8 and note.note < 12 %}
+                <p style="color: orange;">{{ note.note }}</p>
+                {{ note.user.email }}
+            {% endif %}
+
+            {% if note.note >= 12 and note.note < 16 %}
+                <p style="color: yellow;">{{ note.note }}</p>
+                {{ note.user.email }}
+            {% endif %}
+
+            {% if note.note >= 16 and note.note <= 20 %}
+                <p style="color: green;">{{ note.note }}</p>
+                {{ note.user.email }}
+            {% endif %}
+
+            </br>
+            {% if note.user.email != app.user.email %}
+
+            {% endif %}
+
+
+            </br>
+        {%  endfor %}
+
+    </ul>
+
+{% endblock %}
