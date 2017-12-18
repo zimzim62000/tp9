@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    {% for skin in skins %}
+        <li>
+            <h6>{{ skin.name }}</h6>
+        </li>
+    {% endfor %}
+
+{% endblock %}

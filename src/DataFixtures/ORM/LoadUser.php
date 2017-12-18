@@ -4,9 +4,10 @@ namespace App\DataFixtures\ORM;
 
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadUser extends Fixture
+class LoadUser extends Fixture implements DependentFixtureInterface
 {
     const USER_PASSWORD = 'user';
 
@@ -36,4 +37,5 @@ class LoadUser extends Fixture
 
         $manager->flush();
     }
+
 }
