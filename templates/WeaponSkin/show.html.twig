@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+ {% for arme in weapon %}
+     <ul>
+         <li>{{ arme.name }}</li>
+         <li>{{ arme.createdAt|date }}</li>
+         <li>{{ arme.text }}</li>
+         <li>{{ arme.beauty }}</li>
+         <li>{{ arme.type }}</li>
+         <li>{{ arme.price }}</li>
+     </ul>
+ {% endfor %}
+{% endblock %}
