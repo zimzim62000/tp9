@@ -58,7 +58,7 @@ class UserController extends Controller
             return $this->redirectToRoute('app_user_index');
         }
 
-        return $this->render("User/register.html.twig", ["form" => $form->createView()]);
+        return $this->render("User/new.html.twig", ["form" => $form->createView()]);
     }
 
     /**
@@ -78,7 +78,7 @@ class UserController extends Controller
             return $this->redirectToRoute('app_user_index');
         }
 
-        return $this->render("User/register.html.twig", ["form" => $form->createView()]);
+        return $this->render("User/new.html.twig", ["form" => $form->createView()]);
 
     }
 
@@ -100,7 +100,7 @@ class UserController extends Controller
             return $this->redirectToRoute('app_user_index');
         }
 
-        return $this->render("User/register.html.twig", ["form" => $form->createView()]);
+        return $this->render("User/new.html.twig", ["form" => $form->createView()]);
 
     }
 }

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h2>index skin</h2>
+
+    <ul>
+        {{ skin.name }}
+        {{ skin.createdAt|date }}
+        {{ skin.user }}
+        {{ skin.text }}
+        {{ skin.beauty }}
+        {{ skin.price }}
+        {{ skin.type }}
+    </ul>
+    <ul>
+    {% for note in notes %}
+        <li>
+        {{ note.note }}
+        </li>
+
+
+    {% endfor %}
+        <a href="{{ path('app_noteskin_new',{ 'skin' : skin})}}">Noter</a>
+    </ul>
+{% endblock %}

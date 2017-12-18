@@ -4,7 +4,7 @@ namespace App;
 
 class AppEvent
 {
-    const USER_CARD_ADD    = "user_card_add";
-    const USER_CARD_EDIT   = "user_card_edit";
-    const USER_CARD_DELETE = "user_card_delete";
+    const NOTE_SKIN_ADD    = "note_skin_new";
+    const NOTE_SKIN_EDIT    = "note_skin_edit";
+    const NOTE_SKIN_DELETE    = "note_skin_delete";
 }
