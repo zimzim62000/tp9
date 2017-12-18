@@ -21,8 +21,8 @@ class LoadNotes extends Fixture implements DependentFixtureInterface
     {
         $note = new NoteSkin();
         $note->setUser($this->getReference("user@user.fr"));
-        $note->setSkin($this->getReference("i like money"));
-        $note->setNote(10);
+        $note->setSkin($this->getReference("umu"));
+        $note->setNote(30);
         $manager->persist($note);
 
         $note = new NoteSkin();

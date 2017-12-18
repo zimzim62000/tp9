@@ -4,9 +4,7 @@
 {% block body %}
 
     {% for skin in skins %}
-        <li>
-            <h6>{{ skin.name }}</h6>
-        </li>
+        <a href="/weaponSkin/{{ skin.id }}">{{ skin.name }}</a>
     {% endfor %}
 
 {% endblock %}

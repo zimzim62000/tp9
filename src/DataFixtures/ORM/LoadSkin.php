@@ -18,16 +18,13 @@ class LoadSkin extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-
-
-
-
         $skin = new WeaponSkin();
         $skin->setName("Top kek version");
         $skin->setBeauty("légendary");
         $skin->setType("sniper");
         $skin->setPrice(90);
         $skin->setUser($this->getReference("user@user.fr"));
+        $this->setReference($skin->getName(), $skin);
         $manager->persist($skin);
 
         $skin = new WeaponSkin();
@@ -36,6 +33,7 @@ class LoadSkin extends Fixture implements DependentFixtureInterface
         $skin->setType("sniper");
         $skin->setPrice(43);
         $skin->setUser($this->getReference("user@user.fr"));
+        $this->setReference($skin->getName(), $skin);
         $manager->persist($skin);
 
         $skin = new WeaponSkin();
@@ -44,6 +42,7 @@ class LoadSkin extends Fixture implements DependentFixtureInterface
         $skin->setType("knife");
         $skin->setPrice(22);
         $skin->setUser($this->getReference("user@user.fr"));
+        $this->setReference($skin->getName(), $skin);
         $manager->persist($skin);
 
         $skin = new WeaponSkin();
@@ -51,6 +50,7 @@ class LoadSkin extends Fixture implements DependentFixtureInterface
         $skin->setBeauty("légendary");
         $skin->setType("sniper");
         $skin->setPrice(11);
+        $skin->setUser($this->getReference("user@user.fr"));
         $this->setReference($skin->getName(), $skin);
         $manager->persist($skin);
 
@@ -59,11 +59,11 @@ class LoadSkin extends Fixture implements DependentFixtureInterface
         $skin->setBeauty("légendary");
         $skin->setType("pistol");
         $skin->setPrice(4);
+        $skin->setUser($this->getReference("user@user.fr"));
         $this->setReference($skin->getName(), $skin);
         $manager->persist($skin);
 
         $manager->flush();
-
     }
 
     public function getDependencies()

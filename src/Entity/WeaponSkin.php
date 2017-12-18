@@ -72,7 +72,6 @@ class WeaponSkin
 
     /**
      * WeaponSkin constructor.
-     * @param $id
      */
     public function __construct()
     {
