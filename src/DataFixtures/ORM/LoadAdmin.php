@@ -27,5 +27,21 @@ class LoadAdmin extends Fixture
 
         $manager->persist($admin);
         $manager->flush();
+        
+        $admin = new User();
+
+        $admin->setFirstname('SAdmin');
+        $admin->setLastname('SAdmin');
+        $admin->setEmail('Sadmin@admin.fr');
+        $admin->setBirthday(new \DateTime('2015/12/01'));
+        $admin->setIsSuperAdmin(true);
+
+        $password = $this->container->get('security.password_encoder')->encodePassword($admin, self::ADMIN_PASSWORD);
+        $admin->setPassword($password);
+
+        $this->addReference('Sadmin', $admin);
+
+        $manager->persist($admin);
+        $manager->flush();
     }
 }

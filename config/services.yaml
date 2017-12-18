@@ -2,6 +2,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    my_captcha: '%env(MY_CAPTCHA)%'
 
 services:
     # default configuration for services in *this* file
@@ -27,3 +28,23 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Entity\NoteSkin:
+        public: true
+
+    App\Entity\WeaponSkin:
+        public: true
+
+    App\Event\NoteSkinEvent:
+        public: true
+
+    App\Event\SkinEvent:
+        public: true
+
+    App\Form\NoteSkinType:
+        public: true
+        arguments: [%my_captcha%]
+        autowire: true
+
+    App\Form\WeaponSkinType:
+        public: true

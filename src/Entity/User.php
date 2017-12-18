@@ -57,78 +57,90 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="boolean")
      */
     private $isAdmin = false;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isSuperAdmin = false;
+	
+	/**
+	 * @return mixed
+	 */
+	public function isSuperAdmin(){
+		return $this->isSuperAdmin;
+	}
 
     public function __construct()
     {
         $this->createdAt = $this->updatedAt = new \DateTime();
     }
 
-    public function getId() : ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getEmail() : ?string
+    public function getEmail()
     {
         return $this->email;
     }
 
-    public function setEmail(?string $email) : void
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
 
-    public function getFirstname() : ?string
+    public function getFirstname()
     {
         return $this->firstname;
     }
 
-    public function setFirstname(?string $firstname) : void
+    public function setFirstname(string $firstname)
     {
         $this->firstname = $firstname;
     }
 
-    public function getLastname() : ?string
+    public function getLastname()
     {
         return $this->lastname;
     }
 
-    public function setLastname(?string $lastname) : void
+    public function setLastname(string $lastname)
     {
         $this->lastname = $lastname;
     }
 
-    public function getBirthday() : ?\DateTime
+    public function getBirthday()
     {
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTime $birthday) : void
+    public function setBirthday(\DateTime $birthday)
     {
         $this->birthday = $birthday;
     }
 
-    public function getPassword() : ?string
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword(?string $password) : void
+    public function setPassword(string $password)
     {
         $this->password = $password;
     }
 
-    public function getCreatedAt() : \DateTime
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt() : \DateTime
+    public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt) : void
+    public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
     }
@@ -138,9 +150,14 @@ class User implements UserInterface, \Serializable
         return $this->isAdmin;
     }
 
-    public function setIsAdmin(bool $isAdmin) : void
+    public function setIsAdmin(bool $isAdmin)
     {
         $this->isAdmin = $isAdmin;
+    }
+
+    public function setIsSuperAdmin(bool $isAdmin)
+    {
+        $this->isSuperAdmin = $isAdmin;
     }
 
     /**
@@ -152,6 +169,9 @@ class User implements UserInterface, \Serializable
 
         if ($this->isAdmin()) {
             $roles[] = 'ROLE_ADMIN';
+        }
+        if($this->isSuperAdmin()){
+        	$roles[] = 'ROLE_SUPER_ADMIN';
         }
 
         return $roles;
