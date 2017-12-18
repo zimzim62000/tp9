@@ -1,0 +1,17 @@
+{% block body %}
+
+    <h3>notes associées</h3>
+
+    <ul>
+        {% for note in notes %}
+
+            <li>
+                Note : {{ note.note }}
+            </li>
+
+        {% endfor %}
+
+        <a href="{{ path('app_note_add', {'id': skin.id}) }}">Ajouter une note</a>
+    </ul>
+
+{% endblock %}
