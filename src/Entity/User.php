@@ -29,6 +29,10 @@ class User {
      * @ORM\Column(type="boolean")
      */
     private $isAdmin = false;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isSuperAdmin = false;
 
     /**
      * @return mixed
@@ -94,4 +98,19 @@ class User {
         $this->isAdmin = $isAdmin;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getIsSuperAdmin()
+    {
+        return $this->isSuperAdmin;
+    }
+
+    /**
+     * @param mixed $isSuperAdmin
+     */
+    public function setIsSuperAdmin($isSuperAdmin)
+    {
+        $this->isSuperAdmin = $isSuperAdmin;
+    }
 }

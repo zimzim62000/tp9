@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
- * @Route(path="/weapon/skin")
+ * @Route(path="/Weapon/Skin")
  */
 class WeaponSkinController extends Controller {
     /**
