@@ -33,6 +33,12 @@ class User implements UserInterface, \Serializable
      */
     private $isAdmin = false;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isSuperAdmin = false;
+
+
 
     /**
      * {@inheritdoc}
@@ -45,8 +51,21 @@ class User implements UserInterface, \Serializable
             $roles[] = 'ROLE_ADMIN';
         }
 
+        if ($this->isSuperAdmin()) {
+            $roles[] = 'ROLE_ADMIN';
+        }
+
         return $roles;
     }
+
+    /**
+     * @return mixed
+     */
+    public function isSuperAdmin()
+    {
+        return $this->isSuperAdmin;
+    }
+
 
     /**
      * {@inheritdoc}
@@ -158,5 +177,11 @@ class User implements UserInterface, \Serializable
     {
         $this->isAdmin = $isAdmin;
     }
+
+    function __toString()
+    {
+        return $this->email;
+    }
+
 
 }

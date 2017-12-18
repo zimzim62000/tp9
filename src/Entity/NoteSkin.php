@@ -43,7 +43,7 @@ class NoteSkin
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="WeaponSKin")
+     * @ORM\ManyToOne(targetEntity="WeaponSkin")
      * @ORM\JoinColumn(name="skin_id", referencedColumnName="id")
      */
     private $skin;

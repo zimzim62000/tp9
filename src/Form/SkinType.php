@@ -2,6 +2,8 @@
 namespace App\Form;
 
 use App\Entity\NoteSkin;
+use App\Entity\WeaponSkin;
+use Doctrine\DBAL\Types\DecimalType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -16,38 +18,33 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class NoteSkinType extends AbstractType
+class SkinType extends AbstractType
 {
-    private $token;
-    private $weaponskin;
-    /**
-     * NoteSkinType constructor.
-     * @param $token
-     */
-    public function __construct(TokenStorageInterface $token)
-    {
-        $this->token = $token;
-    }
+
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array('data_class' => NoteSkin::class,'weaponskin' => null));
+        $resolver->setDefaults(array('data_class' => WeaponSkin::class));
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->weaponskin = $options["weaponskin"];
         $builder
-            ->add('note', IntegerType::class)
+            ->add('name', TextType::class)
+            ->add('text', TextType::class)
+            ->add('createdAt', DateType::class)
+            ->add('updatedAt', DateType::class)
+            ->add('beauty', TextType::class)
+            ->add('type', TextType::class)
+            ->add('price', DecimalType::class)
+            ->add('user', null)
             ->addEventListener( FormEvents::PRE_SET_DATA,
                 array($this, 'onPreSetData'))
             ->getForm();
     }
     public function onPreSetData(FormEvent $event)
     {
-        $note = $event->getData();
+        $skin = $event->getData();
         $form = $event->getForm();
-        if ($note->getId() === null){
-            $note->setUser($this->token->getToken()->getUser());
-            $note->setSkin($this->weaponskin);
+        if ($skin->getId() === null){
             $form->add('save',SubmitType::class, array('label'=>"créer"));
         }
         else

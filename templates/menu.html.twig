@@ -6,4 +6,7 @@
     {% if is_granted('ROLE_USER') %}
         <li><a href="{{ path('logout') }}">Déconnexion</a></li>
     {% endif %}
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <li><a href="{{ path('superskin_index') }}">Gestion Skin</a></li>
+    {% endif %}
 </ul>

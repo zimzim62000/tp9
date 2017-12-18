@@ -3,7 +3,7 @@
 namespace App\Subscriber;
 
 use App\AppEvent;
-use App\Entity\UserCard;
+
 use App\Event\NoteSkinEvent;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,7 +19,7 @@ class NoteSkinSubscriber implements EventSubscriberInterface
      * NoteSkinSubscriber constructor.
      * @param $em
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
@@ -39,7 +39,6 @@ class NoteSkinSubscriber implements EventSubscriberInterface
     public function noteskinEdit(NoteSkinEvent $noteSkinEvent)
     {
         $noteskin = $noteSkinEvent->getNoteskin();
-        $noteskin->setUpdatedAt(new DateTime('now'));
         $this->em->persist($noteskin);
         $this->em->flush();
     }
@@ -49,4 +48,5 @@ class NoteSkinSubscriber implements EventSubscriberInterface
         $this->em->remove($noteskin);
         $this->em->flush();
     }
+
 }

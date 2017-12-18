@@ -38,6 +38,10 @@
                 <a href="{{  path('noteskin_new', {'id': note.skin.id}) }}" >Ajouter une note à ce skin</a>
             {% endif %}
 
+            {% if is_granted('ROLE_ADMIN') == true %}
+                <a href="{{  path('noteskin_edit', {'id': note.id}) }}" >Edit</a>
+                <a href="{{  path('noteskin_delete', {'id': note.id}) }}" >Delete</a>
+                {%  endif %}
 
             </br>
         {%  endfor %}

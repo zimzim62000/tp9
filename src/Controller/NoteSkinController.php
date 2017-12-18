@@ -30,8 +30,11 @@ class NoteSkinController extends Controller
      *     name="noteskin_new"
      * )
      */
-    public function newAction(Request $request, WeaponSkin $weaponskin, AuthorizationChecker $authorizationChecker)
+    public function newAction(Request $request, WeaponSkin $weaponskin, AuthorizationCheckerInterface $authorizationChecker)
     {
+        if($authorizationChecker->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute("skin_index");
+        }
         $noteskin = $this->get(\App\Entity\NoteSkin::class);
         $form = $this->createForm(NoteSkinType::class, $noteskin, ['weaponskin' => $weaponskin]);
         $form->handleRequest($request);
@@ -51,7 +54,7 @@ class NoteSkinController extends Controller
      *     name="noteskin_edit"
      * )
      */
-    public function editAction(Request $request, NoteSkin $noteskin, AuthorizationChecker $authorizationChecker)
+    public function editAction(Request $request, NoteSkin $noteskin, AuthorizationCheckerInterface $authorizationChecker)
     {
         if(false === $authorizationChecker->isGranted(AppAccess::NoteSkinEdit, $noteskin)){
             return $this->redirectToRoute("skin_index");
@@ -73,7 +76,7 @@ class NoteSkinController extends Controller
      *     name="noteskin_delete"
      * )
      */
-    public function removeAction(NoteSkin $noteskin, AuthorizationChecker $authorizationChecker)
+    public function removeAction(NoteSkin $noteskin, AuthorizationCheckerInterface $authorizationChecker)
     {
         if(false === $authorizationChecker->isGranted(AppAccess::NoteSkinDelete, $noteskin)){
             return $this->redirectToRoute("skin_index");
@@ -84,5 +87,6 @@ class NoteSkinController extends Controller
         $dispatcher->dispatch(AppEvent::NOTE_SKIN_DELETE, $noteskinEvent);
         return $this->redirectToRoute('skin_index');
     }
+
 
 }

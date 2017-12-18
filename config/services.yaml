@@ -33,3 +33,9 @@ services:
 
     App\Event\NoteSkinEvent:
         public: true
+
+    App\Entity\WeaponSkin:
+        public: true
+
+    App\Event\SkinEvent:
+        public: true
