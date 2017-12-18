@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h2>index user</h2>
+
+    <ul>
+        {% for user in users %}
+            <li>{{ user.email }} ;</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

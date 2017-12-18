@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 
 /**
  * @Route(path="/user")
@@ -12,13 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class UserController extends Controller
 {
     /**
-     * @Route(
-     *     path="",
-     *     name="user_index"
-     * )
+     * @Route(path="/user", name="user_index")
      */
-    public function indexdAction()
+    public function indexAction()
     {
-        return $this->render('User/index.html.twig');
+        return $this->render('User/user.html.twig');
     }
 }

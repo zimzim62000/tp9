@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<h1> show weapon skins</h1>
+    {% for(ws in weaponskins)%}
+        <ul>
+            <li>ws.name</li>;
+            <li>ws.createdAt</li>;
+            <li>ws.user</li>;
+            <li>ws.text</li>;
+            <li>ws.beauty</li>;
+            <li>ws.type</li>;
+            <li>ws.price</li>;
+            <li><a {{ path='weaponskin_show' }}>show</a></li>
+
+        </ul>
+    {% endfor %}
+{% endblock %}
