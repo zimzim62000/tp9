@@ -52,7 +52,8 @@ class UserController extends Controller
         if($form->isSubmitted() && $form->isValid()){
             $user = $form->getData();
             /** @var $user User */
-          $entityManager->persist($user);
+            $user->setPassword($userPasswordEncoder->encodePassword($user, $user->getPassword()));
+            $entityManager->persist($user);
             $entityManager->flush();
             return $this->redirectToRoute('app_user_index');
         }
