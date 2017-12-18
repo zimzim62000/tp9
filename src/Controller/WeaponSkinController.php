@@ -10,7 +10,6 @@ namespace App\Controller;
 
 use App\AppEvent;
 use App\Entity\WeaponSkin;
-use App\Entity\WeaponSkin;
 use App\Event\WeaponSkinEvent;
 use App\Form\WeaponSkinType;
 use Doctrine\ORM\EntityManager;

@@ -9,6 +9,7 @@
         {% for msg in app.session.flashBag.get('success') %}
            <p> {{ msg }} </p>
         {% endfor %}
+    {% endif %}
 
     <ul>
         {% for skin in skins %}
