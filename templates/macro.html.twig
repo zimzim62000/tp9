@@ -1,0 +1,18 @@
+{%  exetends "base.html.twig" %}
+
+{% macro color(value) %}
+    {%  if value < 8 and value > 0 %}
+        <p style="color: red">{{ n.notes }}</p>
+    {% endif %}
+
+    {%  if value < 12 and value > 8 %}
+        <p style="color: orange">{{ n.notes }}</p>
+    {% endif %}
+
+    {%  if value < 16 and value > 12 %}
+        <p style="color: yellow">{{ n.notes }}</p>
+    {% endif %}
+
+    {%  if value < 20 and value > 16 %}
+        <p style="color: green">{{ n.notes }}</p>
+    {% endif %}

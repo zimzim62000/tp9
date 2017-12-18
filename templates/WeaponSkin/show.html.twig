@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% import "macro.html.twig" as macro %}
+
+{% block body %}
+
+<h1> show weapon skins</h1>
+    {% for n as noteskins|sort %}
+        <ul>
+            <li>WeaponSkin.name</li>;
+            <li>WeaponSkin.createdAt</li>;
+            <li>WeaponSkin.user</li>;
+            <li>WeaponSkin.text</li>;
+            <li>WeaponSkin.beauty</li>;
+            <li>WeaponSkin.type</li>;
+            <li>WeaponSkin.price</li>;
+            <li>n.notes</li>
+            <li><a href={{ path('weaponskin_show') }}>Ajouter note</a></li>
+            <li><a href={{ path('noteskins_trier') }}>Trier notes</a></li>
+        </ul>
+    {% endfor %}
+{% endblock %}
