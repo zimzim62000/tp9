@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h2>show Skin</h2>
+
+<ul>
+    <li>Nom : {{ skin.name }}</li>
+    <li>Créé : {{ skin.createdAt|date('Y-m-d H:i:s') }}</li>
+    <li>Auteur : {{ skin.user.username }}</li>
+    <li>Description : {{ skin.text }}</li>
+    <li>Beauté : {{ skin.beauty.name }}</li>
+    <li>Type : {{ skin.type.name }}</li>
+    <li>Prix : {{ skin.price }}</li>
+</ul>
+
+    {% include 'Note/index.html.twig' %}
+
+    <a href="{{ path('app_skin_index') }}">back to list</a></li>
+{% endblock %}
