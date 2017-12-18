@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h2>index skin</h2>
+        <table>
+            <tr>
+                <th>name</th>
+                <th>price</th>
+                <th>auteur</th>
+                <th>Show</th>
+            </tr>
+        {% for skin in tabSkins %}
+            <tr>
+                <td>{{ skin.name }}</td>
+                <td>{{ skin.price }}</td>
+                <td>{{ skin.user.firstname }}</td>
+                <td><a href={{ path('skin_show',{'id' : skin.id}) }}><button>Show</button></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+{% endblock %}

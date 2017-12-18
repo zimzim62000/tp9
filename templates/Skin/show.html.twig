@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% import "macro.html.twig" as macro %}
+{% block body %}
+    <h2>index skin</h2>
+    <table>
+        <tr>
+            <th>name</th>
+            <th>price</th>
+            <th>auteur</th>
+            <th>description</th>
+            <th>beauté</th>
+            <th>type</th>
+            <th>prix</th>
+        </tr>
+        <tr>
+            <td>{{ skin.name }}</td>
+            <td>{{ skin.createdAt|date("Y") }}</td>
+            <td>{{ skin.user.firstname }}</td>
+            <td>{{ skin.text }}</td>
+            <td>{{ skin.beauty }}</td>
+            <td>{{ skin.type }}</td>
+            <td>{{ skin.price }}</td>
+        </tr>
+    </table>
+    <h1>Les Notes</h1>
+{#    {% if app.user.name in notes.user %}
+        <a href={{ path('skin_add')}}><button>Noter</button></a>
+    {% endif %}#}
+    <table>
+        <tr>
+            <th>note</th>
+            <th>user</th>
+            {% if is_granted('ROLE_ADMIN') == true %}
+                <th>Edit</th>
+                <th>Delete</th>
+            {% endif %}
+        </tr>
+    {% for note in notes %}
+        <tr>
+            <td>{{ macro.note(note) }}</td>
+            <td>{{ note.user.firstname }}</td>
+            {% if is_granted('ROLE_ADMIN') == true %}
+                <td><a href={{ path('skin_edit',{'id' : skin.id}) }}><button>Skin</button></a></td>
+                <td><a href={{ path('skin_delete',{'id' : skin.id}) }}><button>Delete</button></a></td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

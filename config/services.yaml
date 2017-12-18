@@ -27,3 +27,14 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+    App\Entity\WeaponSkin:
+        public: true
+    App\Entity\NoteSkin:
+        public: true
+    App\Subscriber\NoteSkinSubscriber:
+        public: true
+        arguments: ['@doctrine.orm.entity_manager']
+        autowire: true
+    app.note.event:
+        public: true
+        class: \App\Event\NoteSkinEvent\
