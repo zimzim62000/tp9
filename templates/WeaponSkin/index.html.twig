@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h2>index Skins</h2>
+    <ul>
+        {% for skin in skins %}
+            <li>
+                {{ skin.name ~ ' ' ~ skin.user.email ~ ' ' ~ skin.price }} - <a href="{{ path('app_skin_show', {'id': skin.id}) }}">Show</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

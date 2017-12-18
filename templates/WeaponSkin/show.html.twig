@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% macro colore(note) %}
+    <p style = "color:
+    {% if note < 8 %}
+            red
+    {% elseif note < 12 %}
+            orange
+    {% elseif note < 16 %}
+            yellow
+    {% elseif note < 20 %}
+            green
+    {% endif %}
+            ;"></p>
+{% endmacro colore %}
+
+
+{% block body %}
+
+    <h2>show Skin : {{ skin.name }}</h2>
+
+    <ul>
+        <li>creation : {{ skin.createdAt|date }}</li>
+        <li>text : {{ skin.text }}</li>
+        <li>prix : {{ skin.price }}</li>
+        <li>type : {{ skin.type }}</li>
+    </ul>
+
+    <h2>show Notes</h2>
+
+    <ul>
+    {% for note in notes %}
+         <li>
+             Note : {{ note.note ~ ' ' ~ note.user.email}}
+             {% if is_granted('ROLE_ADMIN') %}
+                 <a href="">EDITER</a>
+                 <a href="">SUPPRIMER</a>
+             {% endif %}
+         </li>
+    {% endfor %}
+    </ul>
+
+    {% if not is_granted('ROLE_ADMIN') and noteByUser is empty %}
+        <!--<a href = "">AJOUTER UNE NOTE</a>-->
+    {% endif %}
+
+    <a href="{{ path('app_skin_index') }}">back to list</a></li>
+{% endblock %}
