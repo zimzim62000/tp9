@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h2>show Skin</h2>
+
+    <ul>
+        <li>{{ skin.name }} - {{ skin.createdAt | date("Y-m-d") }} - {{ skin.user.email }} - {{ skin.text }} -
+        {{ skin.beauty }} - {{ skin.type }} - {{ skin.price }}</li>
+        <div>
+            {% for note in notes %}
+
+                <span>{{ note.note }}</span> - <a href="{{ path('editer_note', {id: note.id}) }}"><button>Editer</button></a>
+
+                {% if app.user.isAdmin %}
+                    <a href="{{ path('supprimer_note', {id: note.id}) }}"><button>Supprimer</button></a>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+
+        {% if app.user.isAdmin == false %}
+            <a href="{{ path('add_note') }}"><button>Ajouter une note</button></a>
+        {% endif %}
+    </ul>
+
+    <a href="{{ path('skin_index') }}">back to list</a></li>
+{% endblock %}
