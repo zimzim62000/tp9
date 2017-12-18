@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% import "macro.html.twig" as macro %}
+{% block title %}{{ skin.name }}{% endblock %}
+{% block body %}
+    <h1>{{ skin.name }}</h1>
+    <p>{{ skin.text }}
+        <br/>
+        Créé le :{{ skin.createdAt|date('d-m-Y') }} par {{ skin.user }} - Mis à jour le : {{ skin.updatedAt|date('d-m-Y') }}
+        <br/>
+        Rareté : {{ skin.beauty }} - Type : {{ skin.type }} - Prix : {{ skin.price }} $
+        <br/>
+        <a href="{{ path('skin_edit', {id: skin.id}) }}">Editer le skin</a>
+        <br/>
+        <a href="{{ path('skin_delete', {id: skin.id}) }}">Supprimer le skin</a>
+
+        Notes:
+        <br/>
+        {%  for note in notes|sort %}
+            {{ macro.note(note.note) }} par {{ note.user }} <a href="{{ path('note_edit', {id: note.id}) }}">Editer la note <a href="{{ path('note_delete', {id: note.id}) }}">Supprimer la note</a></a>
+            <br/>
+
+        {%  endfor %}
+        <br/>
+        <a href="{{ path('note_add', {id: skin.id}) }}">Ajouter une note</a>
+    </p>
+{% endblock %}
