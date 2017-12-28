@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h2>index Weapon</h2>
+
+    <ul>
+        {% for weapon in weapons %}
+
+            <li>
+
+                {{ weapon.name }} - <a href="{{ path('weaponskin_show', {'id': weapon.id}) }}">Show</a>
+
+            </li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

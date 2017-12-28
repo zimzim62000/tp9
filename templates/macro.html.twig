@@ -1,0 +1,14 @@
+{% macro weapons(weapons) %}
+    <div class="weapons">
+        <ul>
+            <li>{{ weapons.name }}</li>
+            <li>{{ weapons.createdAt|date }}</li>
+            <li>{{ weapons.user.email }}</li>
+            <li>{{ weapons.text }}</li>
+            <li>{{ weapons.beauty }}</li>
+            <li>{{ weapons.type }}</li>
+            <li>{{ weapons.price }}</li>
+        </ul>
+
+    </div>
+{% endmacro %}
