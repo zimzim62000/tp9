@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h2>show Skin : {{ skin.name }}</h2>
+
+    <ul>
+        <li>creation : {{ skin.createdAt|date }}</li>
+        <li>text : {{ skin.text }}</li>
+        <li>prix : {{ skin.price }}</li>
+        <li>type : {{ skin.type }}</li>
+    </ul>
+
+    <h2>show Notes</h2>
+
+    <ul>
+    {% for note in notes %}
+         <li>
+             Note : {{ note.note ~ ' ' ~ note.user.email}}
+             {% if is_granted('ROLE_ADMIN') %}
+                 <a href="">EDITER</a>
+                 <a href="">SUPPRIMER</a>
+             {% endif %}
+         </li>
+    {% endfor %}
+    </ul>
+
+    {% if not is_granted('ROLE_ADMIN') and noteByUser is empty %}
+        <a href = "{{ path('app_noteskin_add', {'id' : skin.id }) }}">AJOUTER UNE NOTE</a>
+    {% endif %}
+
+    <a href="{{ path('app_skin_index') }}">back to list</a></li>
+{% endblock %}
